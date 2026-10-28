@@ -11,13 +11,13 @@
 <meta property="og:title" content="Uncovered | Vinyl Records, Preorders &amp; Record Players">
 <meta property="og:description" content="New releases, preorders, hand-graded used vinyl and record players.">
 <meta property="og:url" content="https://uncovered.store/">
-<meta property="og:image" content="https://uncovered.store/assets/img/players/rega-p3-white-lifestyle.jpg">
+<meta property="og:image" content="https://uncovered.store/assets/video/record-player.jpg">
 <meta name="theme-color" content="#0E0D0C">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=3">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,10 +32,19 @@
 <body data-page="home" class="home">
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- Block 1 — Header: logo + tagline -->
-<section class="masthead" aria-label="Uncovered">
-  <h1 class="masthead__word"><span class="sr-only">Uncovered: vinyl records, preorders and record players</span><span class="clip" aria-hidden="true" data-wordmark>UNCOVERED</span></h1>
-  <p class="masthead__tag">Records worth uncovering.</p>
+<!-- Block 1 — Header: logo + tagline, over full-screen video -->
+<section class="hero" aria-label="Uncovered">
+  <video class="hero__video" data-parallax="-0.18" autoplay muted loop playsinline preload="auto" poster="assets/video/record-player.jpg" aria-hidden="true">
+    <source src="assets/video/record-player.webm" type="video/webm">
+    <source src="assets/video/record-player.mp4" type="video/mp4">
+  </video>
+  <div class="hero__shade" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <h1 class="masthead__word"><span class="sr-only">Uncovered: vinyl records, preorders and record players</span><span class="clip" aria-hidden="true" data-wordmark>UNCOVERED</span></h1>
+    <p class="masthead__tag">Records worth uncovering.</p>
+    <div class="hero__cta"><a class="btn" href="new-releases.html">Shop last releases</a><a class="btn btn--ghost" href="product.html?id=starter-pack">Build my pack</a></div>
+  </div>
+  <a class="hero__cue" href="#banner" aria-label="Scroll to highlights"><span></span></a>
 </section>
 
 <main id="main">
@@ -113,12 +122,12 @@
   </section>
 
   <section class="interlude" aria-label="Used and graded by hand">
-    <img src="assets/img/players/technics-sl-1200mk2-detail.jpg" alt="" data-parallax="0.12">
+    <video data-parallax="0.12" autoplay muted loop playsinline preload="metadata" poster="assets/video/record-bg.jpg" aria-hidden="true"><source src="assets/video/record-bg.webm" type="video/webm"><source src="assets/video/record-bg.mp4" type="video/mp4"></video>
     <div class="interlude__text">
       <p data-split>Every record, checked by hand.</p>
       <a class="btn" href="shop.html?cat=used">Shop used &amp; graded</a>
     </div>
-    <span class="interlude__credit">Technics SL-1200MK2 · photo <a href="https://commons.wikimedia.org/wiki/File:Technics_SL-1200MK2_turntable.jpg" rel="noopener">Adrian DuMay</a>, CC BY 2.0</span>
+    <span class="interlude__credit">Footage: <a href="https://archive.org/details/RecordBackground" rel="noopener">Beachfront B-Roll</a>, CC BY 3.0</span>
   </section>
 
   <section class="section section--tight" aria-labelledby="used-title">
@@ -130,21 +139,6 @@
       <a class="link-arrow" href="help.html#grading">How we grade</a>
     </div>
     <div class="row" id="used-row"></div>
-  </section>
-
-  <section class="section section--tight" aria-labelledby="journal-title">
-    <div class="sec-head">
-      <div>
-        <h2 class="h-display" id="journal-title" data-split>New to <em>vinyl?</em></h2>
-        <p data-reveal>Plain-English guides from the shop floor.</p>
-      </div>
-      <a class="link-arrow" href="journal/index.html">All guides</a>
-    </div>
-    <div class="jgrid">
-      <a class="jcard" href="journal/do-you-need-speakers-for-a-turntable.html" data-reveal><span class="jcard__tag">Getting started</span><h3>Do you need speakers for a turntable?</h3><p>Turntables, preamps and speakers, explained in plain words.</p><span class="jcard__go">Read</span></a>
-      <a class="jcard" href="journal/is-buying-used-vinyl-worth-it.html" data-reveal style="--d:90ms"><span class="jcard__tag">Buying</span><h3>Is it worth buying used vinyl records?</h3><p>How to read a grade, and what to check before you pay.</p><span class="jcard__go">Read</span></a>
-      <a class="jcard" href="journal/how-to-clean-vinyl-records.html" data-reveal style="--d:180ms"><span class="jcard__tag">Care</span><h3>How to clean vinyl records</h3><p>Five steps that keep your records quiet for decades.</p><span class="jcard__go">Read</span></a>
-    </div>
   </section>
 
   <section class="section section--tight" aria-labelledby="alerts-title">
@@ -166,10 +160,10 @@
 <div id="site-footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-<script src="assets/js/catalog.js?v=3" defer></script>
-<script src="assets/js/data.js?v=3" defer></script>
-<script src="assets/js/art.js?v=3" defer></script>
-<script src="assets/js/main.js?v=3" defer></script>
-<script src="assets/js/home.js?v=3" defer></script>
+<script src="assets/js/catalog.js?v=4" defer></script>
+<script src="assets/js/data.js?v=4" defer></script>
+<script src="assets/js/art.js?v=4" defer></script>
+<script src="assets/js/main.js?v=4" defer></script>
+<script src="assets/js/home.js?v=4" defer></script>
 </body>
 </html>

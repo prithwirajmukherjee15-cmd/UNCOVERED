@@ -200,7 +200,7 @@
       </div>
       <div class="footer__legal">
         <span>© ${new Date().getFullYear()} Uncovered · uncovered.store · Prices include VAT</span>
-        <span>Turntable photos: Wikimedia Commons contributors (CC BY / CC BY-SA), credited on each product page. Release data: MusicBrainz. Covers: Cover Art Archive.</span>
+        <span>Turntable photos: Wikimedia Commons contributors (CC BY / CC BY-SA), credited on each product page. Video: Beachfront B-Roll, CC BY 3.0. Release data: MusicBrainz. Covers: Cover Art Archive.</span>
       </div>
     </div></footer>`;
   }
