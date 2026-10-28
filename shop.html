@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop vinyl records &amp; turntables — Uncovered</title>
+<meta name="description" content="Shop new and pre-order vinyl records in connected sleeves, plus record players and starter packs. Browse by artist or genre. Free delivery over €60.">
+<link rel="canonical" href="https://uncovered.store/shop.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Uncovered">
+<meta property="og:title" content="Shop vinyl records &amp; turntables — Uncovered">
+<meta name="theme-color" content="#E4E3DC">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="shop">
+<a class="skip" href="#main">Skip to content</a>
+
+<main id="main" class="page">
+  <header class="page-head">
+    <ol class="crumbs"><li><a href="index.html">Home</a></li><li aria-current="page" id="crumb-cat">Shop</li></ol>
+    <div class="page-head__row">
+      <h1 class="h-xl" id="shop-title">Shop</h1>
+      <p class="lead" id="shop-lead">Vinyl records in connected sleeves, and the turntables to play them. Browse by artist or genre.</p>
+    </div>
+  </header>
+
+  <nav class="cat-tabs" aria-label="Categories" id="cat-tabs"></nav>
+
+  <div class="shop">
+    <aside class="filters" id="filters" aria-label="Filters">
+      <fieldset>
+        <legend>Genre</legend>
+        <div id="f-genre"></div>
+      </fieldset>
+      <div class="field">
+        <label class="flabel" for="f-artist">Artist</label>
+        <select class="select" id="f-artist"><option value="">All artists</option></select>
+      </div>
+      <fieldset>
+        <legend>Availability</legend>
+        <label class="check"><input type="checkbox" name="avail" value="instock"> In stock</label>
+        <label class="check"><input type="checkbox" name="avail" value="preorder"> Pre-order</label>
+      </fieldset>
+      <button class="link" type="button" id="f-reset">Clear all filters</button>
+    </aside>
+
+    <section aria-labelledby="shop-title">
+      <div class="toolbar">
+        <div class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.6"/></svg>
+          <label class="sr-only" for="q">Search the shop</label>
+          <input id="q" type="search" placeholder="Search artists, albums, genres" autocomplete="off">
+        </div>
+        <label class="sr-only" for="group">Organise by</label>
+        <select class="select" id="group">
+          <option value="">Grid view</option>
+          <option value="artist">By artist</option>
+          <option value="genre">By genre</option>
+        </select>
+        <label class="sr-only" for="sort">Sort by</label>
+        <select class="select" id="sort">
+          <option value="featured">Featured</option>
+          <option value="popular">Best-selling</option>
+          <option value="newest">Newest</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="artist">Artist A–Z</option>
+        </select>
+        <button class="chip filters-toggle" type="button" aria-expanded="false" aria-controls="filters">Filters</button>
+      </div>
+      <p class="result-count" id="count" role="status" aria-live="polite"></p>
+      <div id="results"></div>
+    </section>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/art.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/shop.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Netlify rewrites. The browser keeps the original URL, so album.js reads the
+# album id from the path and the sleeve token from ?k=
+# NFC sleeves are programmed with:  https://uncovered.store/a/<album-id>?k=<sleeve-token>
+/a/*        /album.html           200
+/journal    /journal/index.html   200
