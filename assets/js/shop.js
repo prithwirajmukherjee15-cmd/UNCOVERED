@@ -1,9 +1,10 @@
 /* Uncovered — shop: categories, search, filters, sort and grouping (all kept in the URL). */
 (function () {
   const S = window.SITE, D = S.D, $ = S.$, $$ = S.$$, esc = S.esc;
+  const CATS = { ...D.categories, ...D.extraCategories };
   const params = new URLSearchParams(location.search);
   const state = {
-    cat: D.categories[params.get('cat')] ? params.get('cat') : '',
+    cat: CATS[params.get('cat')] ? params.get('cat') : '',
     q: params.get('q') || '',
     genres: (params.get('genre') || '').split(',').filter(Boolean),
     artist: params.get('artist') || '',
@@ -12,18 +13,11 @@
     sort: params.get('sort') || 'featured'
   };
 
-  const LEADS = {
-    '': 'Vinyl records in connected sleeves, and the turntables to play them. Browse by artist or genre.',
-    new: 'The latest records to land at Uncovered, pre-orders included.',
-    preorder: 'Reserve it now and it ships on release day, with bonus content in the sleeve.',
-    vinyl: 'Every record comes in a connected sleeve. Tap it to open the album\'s hub.',
-    players: 'Turntables we designed to be easy to set up and kind to your records.',
-    sale: 'Limited-time prices on records and turntables.',
-    packs: 'A turntable and records together, for less.'
-  };
+  const LEADS = Object.fromEntries(Object.entries(CATS).map(([k, c]) => [k, c.intro]));
+  LEADS[''] = 'New, reissued and used records, and the turntables to play them. Browse by artist or genre.';
 
   // Category tabs
-  const tabs = [['', 'All', D.all.length], ...Object.entries(D.categories).map(([k, c]) => [k, c.label, D.all.filter(c.test).length])];
+  const tabs = [['', 'All', D.all.length], ...Object.entries(CATS).map(([k, c]) => [k, c.label, D.all.filter(c.test).length])];
   $('#cat-tabs').innerHTML = tabs.map(([k, label, n]) =>
     `<a class="chip" href="?cat=${k}" data-cat="${k}" aria-current="${state.cat === k}">${label} <small>${n}</small></a>`).join('');
 
@@ -38,11 +32,11 @@
   $('#group').value = state.group;
   $('#sort').value = state.sort;
 
-  const featuredOrder = p => (p.tags.includes('reco') ? 0 : p.tags.includes('bestseller') ? 1 : p.tags.includes('new') ? 2 : 3);
+  const featuredOrder = p => (p.rank ? p.rank / 100 : p.tags.includes('new') ? 1 : p.condition !== 'New' ? 2 : 3);
   const sorters = {
     featured: (a, b) => featuredOrder(a) - featuredOrder(b),
-    popular: (a, b) => Number(b.tags.includes('bestseller')) - Number(a.tags.includes('bestseller')),
-    newest: (a, b) => (b.released || '').localeCompare(a.released || ''),
+    popular: (a, b) => (a.rank || 99) - (b.rank || 99),
+    newest: (a, b) => (b.released || '0').localeCompare(a.released || '0'),
     'price-asc': (a, b) => a.price - b.price,
     'price-desc': (a, b) => b.price - a.price,
     artist: (a, b) => a.artist.localeCompare(b.artist) || a.title.localeCompare(b.title)
@@ -51,7 +45,7 @@
   function results() {
     const q = state.q.trim().toLowerCase();
     let list = D.all.filter(p => {
-      if (state.cat && !D.categories[state.cat].test(p)) return false;
+      if (state.cat && !CATS[state.cat].test(p)) return false;
       if (state.genres.length && !state.genres.includes(p.genre)) return false;
       if (state.artist && p.artist !== state.artist) return false;
       if (state.avail.length) {
@@ -59,7 +53,7 @@
         if (!state.avail.includes(a)) return false;
       }
       if (q) {
-        const hay = [p.title, p.artist, p.genre, p.label, ...(p.tracks || []).map(t => t[1])].join(' ').toLowerCase();
+        const hay = [p.title, p.artist, p.genre, p.label, p.format, p.edition, p.condition, ...(p.tracks || []).map(t => t[1])].join(' ').toLowerCase();
         if (!q.split(/\s+/).every(w => hay.includes(w))) return false;
       }
       return true;
@@ -69,7 +63,7 @@
 
   function render() {
     const list = results();
-    const cat = state.cat ? D.categories[state.cat].label : 'Shop';
+    const cat = state.cat ? CATS[state.cat].label : 'Shop';
     $('#shop-title').textContent = cat;
     $('#crumb-cat').textContent = cat;
     $('#shop-lead').textContent = LEADS[state.cat] || LEADS[''];

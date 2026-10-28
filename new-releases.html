@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Vinyl Releases This Week | Uncovered</title>
+<meta name="description" content="The latest vinyl releases, updated every week. Discover new albums, limited pressings and upcoming records to preorder at Uncovered.">
+<link rel="canonical" href="https://uncovered.store/new-releases.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Uncovered">
+<meta property="og:title" content="New Vinyl Releases This Week | Uncovered">
+<meta property="og:description" content="The latest vinyl releases, updated every week, plus upcoming records to preorder.">
+<meta name="theme-color" content="#0E0D0C">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="releases">
+<a class="skip" href="#main">Skip to content</a>
+
+<main id="main">
+  <!-- Block 1 — Page header -->
+  <header class="page-head">
+    <ol class="crumbs"><li><a href="index.html">Home</a></li><li aria-current="page">Last releases</li></ol>
+    <div class="page-head__row">
+      <h1 class="h-xl" data-split>Last releases</h1>
+      <p class="lead" data-reveal>New records land every Friday. Here you'll find everything that just came out, from big-name albums to limited pressings from independent labels. Don't wait too long: some runs are only a few hundred copies.</p>
+    </div>
+  </header>
+
+  <!-- Block 2 — Release of the week -->
+  <section class="section section--tight" aria-labelledby="rotw-title" style="padding-top:0">
+    <h2 class="eyebrow" id="rotw-title">Release of the week</h2>
+    <div class="rotw" id="rotw" data-reveal></div>
+  </section>
+
+  <!-- Blocks 3 & 4 — Filters and release grid -->
+  <section class="shop" aria-label="All releases" id="releases">
+    <aside class="filters" id="filters" aria-label="Filters">
+      <fieldset>
+        <legend>Show</legend>
+        <label class="check"><input type="radio" name="show" value="out" checked> Out now <small data-count="out"></small></label>
+        <label class="check"><input type="radio" name="show" value="soon"> Coming soon <small data-count="soon"></small></label>
+      </fieldset>
+      <fieldset><legend>Genre</legend><div id="f-genre"></div></fieldset>
+      <fieldset><legend>Format</legend><div id="f-format"></div></fieldset>
+      <fieldset><legend>Edition</legend><div id="f-edition"></div></fieldset>
+      <fieldset>
+        <legend>Price (€)</legend>
+        <div class="range"><label class="sr-only" for="pmin">Minimum price</label><input id="pmin" type="number" min="0" inputmode="numeric" placeholder="Min"><label class="sr-only" for="pmax">Maximum price</label><input id="pmax" type="number" min="0" inputmode="numeric" placeholder="Max"></div>
+      </fieldset>
+      <button class="link" type="button" id="f-reset">Clear all filters</button>
+    </aside>
+
+    <div>
+      <div class="toolbar">
+        <label class="sr-only" for="sort">Sort by</label>
+        <select class="select" id="sort">
+          <option value="newest">Sort by: Newest first</option>
+          <option value="date">Sort by: Release date</option>
+          <option value="price">Sort by: Price</option>
+        </select>
+        <button class="chip filters-toggle" type="button" aria-expanded="false" aria-controls="filters">Filters</button>
+      </div>
+      <p class="result-count" id="count" role="status" aria-live="polite"></p>
+      <div class="grid" id="grid"></div>
+      <nav class="pager" id="pager" aria-label="Pages"></nav>
+    </div>
+  </section>
+
+  <!-- Block 5 — Coming soon -->
+  <section class="section" aria-labelledby="soon-title">
+    <div class="sec-head">
+      <div>
+        <h2 class="h-display" id="soon-title" data-split>Coming soon: <em>preorder now</em></h2>
+        <p data-reveal>Be the first to drop the needle. Preorder upcoming releases today and we'll ship them on release day, so they reach you as soon as they're out.</p>
+      </div>
+      <a class="link-arrow" href="shop.html?cat=preorder">See all preorders</a>
+    </div>
+    <div class="grid grid--4" id="soon"></div>
+  </section>
+
+  <!-- Block 6 — Release alerts -->
+  <section class="section section--tight" aria-labelledby="alerts-title">
+    <div class="alerts" data-reveal>
+      <div>
+        <h2 class="h-display" id="alerts-title">Never miss <em>a release</em></h2>
+        <p>Get our weekly email every Friday morning: new arrivals, restocks and limited editions before they sell out.</p>
+      </div>
+      <form class="news-form" data-list="release-alerts" data-thanks="Done. See you on Friday morning." novalidate>
+        <label class="sr-only" for="alert-email">Your email</label>
+        <input id="alert-email" type="email" placeholder="Your email" autocomplete="email" required>
+        <button class="btn btn--brass" type="submit">Alert me</button>
+        <p class="news-form__msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="assets/js/catalog.js" defer></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/art.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/listen.js" defer></script>
+<script src="assets/js/releases.js" defer></script>
+</body>
+</html>

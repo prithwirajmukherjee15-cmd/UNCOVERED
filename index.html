@@ -3,25 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Uncovered — Vinyl records with connected sleeves &amp; premium turntables</title>
-<meta name="description" content="Uncovered sells vinyl records whose sleeves unlock exclusive album content with a tap of your phone: interviews, lyrics, live sessions and album stories. Plus turntables built to play them.">
+<title>Uncovered | Vinyl Records, Preorders &amp; Record Players</title>
+<meta name="description" content="New releases, preorders, hand-graded used vinyl and record players. Discover our picks of the month and our turntable packs at Uncovered.">
 <link rel="canonical" href="https://uncovered.store/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Uncovered">
-<meta property="og:title" content="Uncovered — Every sleeve hides a second record">
-<meta property="og:description" content="Vinyl records with connected NFC sleeves, and the turntables to play them.">
+<meta property="og:title" content="Uncovered | Vinyl Records, Preorders &amp; Record Players">
+<meta property="og:description" content="New releases, preorders, hand-graded used vinyl and record players.">
 <meta property="og:url" content="https://uncovered.store/">
-<meta name="theme-color" content="#E4E3DC">
+<meta property="og:image" content="https://uncovered.store/assets/img/players/rega-p3-white-lifestyle.jpg">
+<meta name="theme-color" content="#0E0D0C">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
-    {"@type": "Organization", "@id": "https://uncovered.store/#org", "name": "Uncovered", "url": "https://uncovered.store/", "logo": "https://uncovered.store/favicon.svg", "email": "hello@uncovered.store"},
+    {"@type": "Organization", "@id": "https://uncovered.store/#org", "name": "Uncovered", "slogan": "Records worth uncovering.", "url": "https://uncovered.store/", "logo": "https://uncovered.store/favicon.svg", "email": "hello@uncovered.store"},
     {"@type": "WebSite", "name": "Uncovered", "url": "https://uncovered.store/", "publisher": {"@id": "https://uncovered.store/#org"},
      "potentialAction": {"@type": "SearchAction", "target": "https://uncovered.store/shop.html?q={search_term_string}", "query-input": "required name=search_term_string"}}
   ]
@@ -31,230 +32,141 @@
 <body data-page="home" class="home">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead">
-  <div class="mast__announce marquee" data-marquee="0.5" aria-label="Announcements">
-    <div class="marquee__track">
-      <span>Free delivery over €60</span><span>·</span>
-      <span>Every sleeve is connected: tap it, uncover the album</span><span>·</span>
-      <span>Pre-order Glass Orchard by Ines Morrow, out 21 November</span><span>·</span>
-      <span>30-day returns</span><span>·</span>
-    </div>
-  </div>
-  <div class="mast__row">
-    <nav class="mast__util" aria-label="Primary">
-      <a href="shop.html">Shop</a>
-      <a href="how-it-works.html">How it works</a>
-      <a href="help.html">Help</a>
-    </nav>
-    <h1 class="wordmark"><span class="sr-only">Uncovered: vinyl records with connected sleeves, and turntables</span><span class="clip" aria-hidden="true" data-wordmark>UNCOVERED</span></h1>
-    <div class="mast__util mast__util--r">
-      <a href="journal/index.html">Journal</a>
-      <a class="icon-btn" href="shop.html?focus=search" aria-label="Search the shop"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.6"/></svg></a>
-      <button class="icon-btn cart-btn" type="button" data-cart-open aria-label="Open cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="cart-count" data-cart-count>0</span></button>
-    </div>
-  </div>
-
-  <nav class="tri" aria-label="Highlights">
-    <a class="tri__item" href="#concept"><span class="tri__peek" data-disc="#C2471B"></span><span class="tri__num">01</span><span class="tri__label">Our<br>concept</span></a>
-    <span class="tri__slash" aria-hidden="true"></span>
-    <a class="tri__item" href="#reco"><span class="tri__peek" data-cover="midnight-ledger" data-text="false"></span><span class="tri__num">02</span><span class="tri__label">Current<br>Reco</span></a>
-    <span class="tri__slash" aria-hidden="true"></span>
-    <a class="tri__item" href="#pack"><span class="tri__peek" data-disc="#D98E04"></span><span class="tri__num">03</span><span class="tri__label">Pack<br>Offer</span></a>
-  </nav>
-
-  <nav class="catnav" aria-label="Shop categories" id="catnav">
-    <a href="shop.html?cat=new">What's new</a>
-    <a href="shop.html?cat=preorder">Pre-order</a>
-    <a href="shop.html?cat=vinyl">Vinyl</a>
-    <a href="shop.html?cat=players">Record players</a>
-    <a href="shop.html?cat=sale">Special sales</a>
-  </nav>
-  <div class="masthead__sentinel" aria-hidden="true"></div>
-</header>
+<!-- Block 1 — Header: logo + tagline -->
+<section class="masthead" aria-label="Uncovered">
+  <h1 class="masthead__word"><span class="sr-only">Uncovered: vinyl records, preorders and record players</span><span class="clip" aria-hidden="true" data-wordmark>UNCOVERED</span></h1>
+  <p class="masthead__tag">Records worth uncovering.</p>
+</section>
 
 <main id="main">
 
-  <!-- Last releases: vertical scroll drives a horizontal shelf -->
-  <section class="hs" data-scene="hscroll" aria-labelledby="releases-title">
-    <div class="hs__sticky" data-sticky>
-      <div class="sec-head">
-        <p class="eyebrow">Last releases</p>
-        <h2 class="h-display" id="releases-title" data-split>Fresh from the <em>pressing plant</em></h2>
-        <a class="link-arrow" href="shop.html?cat=new">All new releases</a>
-      </div>
-      <div class="hs__viewport"><div class="hs__track" id="releases"></div></div>
-      <div class="hs__progress" aria-hidden="true"><span></span></div>
-    </div>
-  </section>
-
-  <hr class="bar bar--half">
-
-  <!-- Best-seller: the record drops onto the platter as you scroll -->
-  <section class="best" id="best-seller" data-scene="best" data-steps="3" aria-labelledby="best-title">
-    <div class="best__sticky" data-sticky>
-      <p class="eyebrow best__eyebrow">Best-seller</p>
-      <div class="best__stage">
-        <div class="best__shadow" aria-hidden="true"></div>
-        <div class="best__tt" data-turntable="uncovered-one"></div>
-      </div>
-      <div class="best__copy">
-        <p class="best__kicker">No. 1 this season · Record player · Walnut</p>
-        <h2 class="h-display" id="best-title">The Uncovered <em>One</em></h2>
-        <ol class="steps">
-          <li><span>01 · Drive</span><h3>Belt-driven, whisper quiet</h3><p>The motor sits away from the platter, so its hum never reaches your record. Just music, and the soft crackle you came for.</p></li>
-          <li><span>02 · Plug in</span><h3>Built-in phono preamp</h3><p>Connect straight to powered speakers. No extra boxes, no extra cables. Switch it off later if you upgrade your system.</p></li>
-          <li><span>03 · Play</span><h3>Pre-aligned, ready in five minutes</h3><p>The cartridge comes mounted and set up. Put the belt on, set the counterweight, drop the needle.</p></li>
-        </ol>
-        <div class="step-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="buy-row">
-          <span class="price">€249.00</span>
-          <button class="btn" type="button" data-add="uncovered-one">Add to cart</button>
-          <a class="link-arrow" href="product.html?id=uncovered-one">Details</a>
+  <!-- Block 2 — Banner: Our concept / Current Reco / Pack Offer -->
+  <section class="banner" id="banner" aria-label="Highlights">
+    <article class="panel panel--concept" id="concept">
+      <div class="panel__media">
+        <div class="spread" aria-hidden="true" data-parallax="0.04">
+          <img src="assets/img/covers/used-velvet-underground-and-nico.jpg" alt="" loading="eager">
+          <img src="assets/img/covers/used-francoise-hardy-comment-te-dire-adieu.jpg" alt="" loading="eager">
+          <img src="assets/img/covers/used-david-bowie-hunky-dory.jpg" alt="" loading="eager">
         </div>
       </div>
-    </div>
-  </section>
+      <div class="panel__body">
+        <span class="panel__num">01 · Our concept</span>
+        <h2>Our concept</h2>
+        <p>We dig through the crates so you don't have to. New releases, rare finds and second-hand gems, each one checked by hand before it ships.</p>
+        <a class="btn" href="how-it-works.html">Discover our story</a>
+      </div>
+    </article>
 
-  <section class="section" aria-labelledby="bs-records">
+    <article class="panel panel--reco" id="reco">
+      <div class="panel__media">
+        <img class="reco-cover" src="assets/img/covers/miles-davis-kind-of-blue.jpg" alt="Kind of Blue by Miles Davis, album cover" loading="eager">
+      </div>
+      <div class="panel__body">
+        <span class="panel__num">02 · Current Reco</span>
+        <h2>Current Reco</h2>
+        <p>This month's pick: <strong>Miles Davis — Kind of Blue</strong>. Warm, deep and made for a rainy Sunday. Our team has had it on repeat for weeks.</p>
+        <a class="btn" href="product.html?id=miles-davis-kind-of-blue">Listen &amp; buy</a>
+      </div>
+    </article>
+
+    <article class="panel panel--pack" id="pack">
+      <div class="panel__media">
+        <img src="assets/img/players/rega-p3-white-lifestyle.jpg" alt="A white Rega turntable playing a yellow vinyl record" loading="eager">
+      </div>
+      <div class="panel__body">
+        <span class="panel__num">03 · Pack Offer</span>
+        <h2>Pack Offer</h2>
+        <p>Start your collection the right way: one record player and three records of your choice at a special price.</p>
+        <a class="btn" href="product.html?id=starter-pack">Build my pack</a>
+        <p style="margin:14px 0 0;font-size:11px;color:var(--dim)">Photo: kenji ross, CC BY 2.0</p>
+      </div>
+    </article>
+  </section>
+  <div class="banner__dots" id="banner-dots" aria-hidden="true"><button></button><button></button><button></button></div>
+
+  <!-- Block 3 — Main menu (rendered from the catalogue, with each category's intro line) -->
+  <div id="catmenu-slot"></div>
+
+  <!-- Block 4 — Last releases -->
+  <section class="section" aria-labelledby="lr-title">
     <div class="sec-head">
-      <p class="eyebrow">Best-selling records</p>
-      <h2 class="h-display" id="bs-records" data-split>Most <em>played</em></h2>
-      <a class="link-arrow" href="shop.html?cat=vinyl&amp;sort=popular">Shop all vinyl</a>
+      <div>
+        <h2 class="h-display" id="lr-title" data-split>Last releases</h2>
+        <p data-reveal>Fresh out of the press. The newest records in the shop, updated every week.</p>
+      </div>
+      <a class="link-arrow" href="new-releases.html">See all last releases</a>
     </div>
-    <div class="grid grid--4" id="bestsellers"></div>
+    <div class="row" id="last-releases"></div>
   </section>
 
-  <!-- 01 Our concept -->
-  <section class="concept" id="concept" data-scene="concept" data-steps="3" data-phases="3" aria-labelledby="concept-title">
-    <div class="concept__sticky" data-sticky>
-      <div class="concept__copy">
-        <p class="eyebrow">01 — Our concept</p>
-        <h2 class="h-display" id="concept-title">Every sleeve hides a <em>second record</em></h2>
-        <ol class="steps">
-          <li><span>The record</span><h3>Pressed for the long run</h3><p>180-gram vinyl, mastered for the format. Music you can hold.</p></li>
-          <li><span>The connected sleeve</span><h3>A chip you'll never see</h3><p>An NFC chip sits inside every sleeve. No app, no battery, nothing to charge.</p></li>
-          <li><span>The uncovering</span><h3>Tap. The album opens up.</h3><p>Hold your phone to the sleeve to open the album's private hub: interviews, lyrics, live sessions and the story behind it.</p></li>
-        </ol>
-        <div class="step-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-        <a class="btn btn--light" href="how-it-works.html">How it works</a>
-      </div>
-      <div class="concept__stage" aria-hidden="true">
-        <div class="concept__disc" data-disc="#C2471B"></div>
-        <div class="concept__sleeve" data-cover="saint-ouen-sessions"></div>
-        <div class="concept__chip"></div>
-        <div class="concept__rings"><i></i><i></i><i></i></div>
-        <div class="concept__phone">
-          <div class="concept__screen">
-            <div class="concept__screen-top" data-cover="saint-ouen-sessions" data-text="false"></div>
-            <div class="concept__screen-body">
-              <b>Saint-Ouen Sessions</b>
-              <span>Album story</span><span>Interview</span><span>Live session</span><span>Liner notes</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 Current Reco -->
-  <section class="reco" id="reco" aria-labelledby="reco-title">
-    <div class="reco__media">
-      <div data-parallax="0.08"><div class="sleeve is-out" data-sleeve="midnight-ledger"></div></div>
-      <div class="reco__tag" aria-hidden="true">Reco<br>of the<br>month</div>
-    </div>
-    <div class="reco__copy" data-reveal>
-      <p class="eyebrow">02 — Current Reco · October</p>
-      <h2 class="h-display" id="reco-title">Midnight <em>Ledger</em></h2>
-      <p class="muted" style="margin-top:10px">Odessa Kray Quartet · Jazz · 2026</p>
-      <p class="reco__quote">Six pieces written in the margins of a night accountant's ledgers. Put it on late, lights low, and don't skip a thing.</p>
-      <p class="reco__by">Chosen by Léa, Uncovered listening team</p>
-      <dl class="facts">
-        <div><dt>Play first</dt><dd>B2 · Small Hours Waltz</dd></div>
-        <div><dt>Pressing</dt><dd>180g · 33⅓</dd></div>
-        <div><dt>In the sleeve</dt><dd>Paris cellar set</dd></div>
-      </dl>
-      <div class="buy-row">
-        <span class="price">€36.00</span>
-        <button class="btn" type="button" data-add="midnight-ledger">Add to cart</button>
-        <a class="link-arrow" href="album.html?id=midnight-ledger">Preview the sleeve</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 Pack Offer -->
-  <section class="pack" id="pack" data-scene="pack" aria-labelledby="pack-title">
-    <div class="pack__sticky" data-sticky>
-      <div class="pack__copy">
-        <p class="eyebrow">03 — Pack Offer</p>
-        <h2 class="h-display" id="pack-title">Your first <em>night in</em></h2>
-        <div class="pack__price"><strong>€329</strong><s>€360</s><span class="save">Save €31</span></div>
-        <ul class="ticks">
-          <li>The Uncovered One turntable</li>
-          <li>Three connected records of your choice</li>
-          <li>Cleaning kit: brush, solution, anti-static sleeves</li>
-          <li>Free delivery</li>
-        </ul>
-        <a class="btn" href="product.html?id=starter-pack">Build your pack</a>
-      </div>
-      <div id="pack-visual"></div>
-    </div>
-  </section>
-
-  <div class="marquee marquee--big" data-marquee="1" aria-hidden="true">
-    <div class="marquee__track">
-      <span>Tap the sleeve</span><span class="marquee__sep"></span>
-      <span><em>uncover</em> the record</span><span class="marquee__sep"></span>
-      <span>33⅓ RPM</span><span class="marquee__sep"></span>
-      <span><em>45</em> RPM</span><span class="marquee__sep"></span>
-    </div>
-  </div>
-
-  <section class="section" aria-labelledby="how-title">
+  <!-- Block 5 — Best-sellers -->
+  <section class="section section--tight" aria-labelledby="bs-title">
     <div class="sec-head">
-      <p class="eyebrow">How it works</p>
-      <h2 class="h-display two-tone" id="how-title" data-split>Buy it. Play it. <em>Tap it.</em></h2>
-      <a class="link-arrow" href="how-it-works.html">The full walkthrough</a>
+      <div>
+        <h2 class="h-display" id="bs-title" data-split>Best-sellers</h2>
+        <p data-reveal>The records everyone is spinning right now. Chosen by our customers, approved by our team.</p>
+      </div>
+      <a class="link-arrow" href="shop.html?cat=bestsellers">See all best-sellers</a>
     </div>
-    <div class="cols3">
-      <div data-reveal><span class="num">01</span><h3>Choose a record</h3><p>Browse by artist or genre. Every record we sell comes in a connected sleeve.</p></div>
-      <div data-reveal style="--d:100ms"><span class="num">02</span><h3>Drop the needle</h3><p>It's a real record, made to be played. The sleeve does its job on the shelf, not in your way.</p></div>
-      <div data-reveal style="--d:200ms"><span class="num">03</span><h3>Tap the sleeve</h3><p>Hold your phone to the corner mark. The album's hub opens in your browser, no app needed.</p></div>
-    </div>
+    <div class="row" id="best-sellers"></div>
   </section>
 
-  <section class="section" aria-labelledby="journal-title">
+  <section class="interlude" aria-label="Used and graded by hand">
+    <img src="assets/img/players/technics-sl-1200mk2-detail.jpg" alt="" data-parallax="0.12">
+    <div class="interlude__text">
+      <p data-split>Every record, checked by hand.</p>
+      <a class="btn" href="shop.html?cat=used">Shop used &amp; graded</a>
+    </div>
+    <span class="interlude__credit">Technics SL-1200MK2 · photo <a href="https://commons.wikimedia.org/wiki/File:Technics_SL-1200MK2_turntable.jpg" rel="noopener">Adrian DuMay</a>, CC BY 2.0</span>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="used-title">
     <div class="sec-head">
-      <p class="eyebrow">Journal · Listening notes</p>
-      <h2 class="h-display" id="journal-title" data-split>New to <em>vinyl?</em></h2>
+      <div>
+        <h2 class="h-display" id="used-title" data-split>Second-hand <em>gems</em></h2>
+        <p data-reveal>Graded on sight and sound, cleaned, and shipped in a fresh inner sleeve.</p>
+      </div>
+      <a class="link-arrow" href="help.html#grading">How we grade</a>
+    </div>
+    <div class="row" id="used-row"></div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="journal-title">
+    <div class="sec-head">
+      <div>
+        <h2 class="h-display" id="journal-title" data-split>New to <em>vinyl?</em></h2>
+        <p data-reveal>Plain-English guides from the shop floor.</p>
+      </div>
       <a class="link-arrow" href="journal/index.html">All guides</a>
     </div>
     <div class="jgrid">
-      <a class="jcard" href="journal/do-you-need-speakers-for-a-turntable.html" data-reveal>
-        <span class="jcard__tag">Getting started</span>
-        <h3>Do you need speakers for a turntable?</h3>
-        <p>Turntables, preamps and speakers, explained in plain words.</p>
-        <span class="jcard__go">Read</span>
-      </a>
-      <a class="jcard" href="journal/33-vs-45-rpm.html" data-reveal style="--d:100ms">
-        <span class="jcard__tag">The basics</span>
-        <h3>33 vs 45 RPM: what's the difference?</h3>
-        <p>Why records spin at different speeds, and how to tell which one to use.</p>
-        <span class="jcard__go">Read</span>
-      </a>
-      <a class="jcard" href="journal/how-to-clean-vinyl-records.html" data-reveal style="--d:200ms">
-        <span class="jcard__tag">Care</span>
-        <h3>How to clean vinyl records</h3>
-        <p>Five steps that keep your records quiet for decades.</p>
-        <span class="jcard__go">Read</span>
-      </a>
+      <a class="jcard" href="journal/do-you-need-speakers-for-a-turntable.html" data-reveal><span class="jcard__tag">Getting started</span><h3>Do you need speakers for a turntable?</h3><p>Turntables, preamps and speakers, explained in plain words.</p><span class="jcard__go">Read</span></a>
+      <a class="jcard" href="journal/is-buying-used-vinyl-worth-it.html" data-reveal style="--d:90ms"><span class="jcard__tag">Buying</span><h3>Is it worth buying used vinyl records?</h3><p>How to read a grade, and what to check before you pay.</p><span class="jcard__go">Read</span></a>
+      <a class="jcard" href="journal/how-to-clean-vinyl-records.html" data-reveal style="--d:180ms"><span class="jcard__tag">Care</span><h3>How to clean vinyl records</h3><p>Five steps that keep your records quiet for decades.</p><span class="jcard__go">Read</span></a>
     </div>
   </section>
 
+  <section class="section section--tight" aria-labelledby="alerts-title">
+    <div class="alerts" data-reveal>
+      <div>
+        <h2 class="h-display" id="alerts-title">Never miss <em>a release</em></h2>
+        <p>Get our weekly email every Friday morning: new arrivals, restocks and limited editions before they sell out.</p>
+      </div>
+      <form class="news-form" data-list="release-alerts" data-thanks="Done. See you on Friday morning." novalidate>
+        <label class="sr-only" for="alert-email">Your email</label>
+        <input id="alert-email" type="email" placeholder="Your email" autocomplete="email" required>
+        <button class="btn btn--brass" type="submit">Alert me</button>
+        <p class="news-form__msg" role="status"></p>
+      </form>
+    </div>
+  </section>
 </main>
 
 <div id="site-footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="assets/js/catalog.js" defer></script>
 <script src="assets/js/data.js" defer></script>
 <script src="assets/js/art.js" defer></script>
 <script src="assets/js/main.js" defer></script>

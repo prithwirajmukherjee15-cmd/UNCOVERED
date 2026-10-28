@@ -25,7 +25,7 @@
         <div class="line__info"><a href="product.html?id=${p.id}">${esc(p.title)}</a><small>${esc(S.lineLabel(i))}${p.status === 'preorder' ? ` · ${S.statusInfo(p).text}` : ''}</small>
           <div class="qty" data-key="${esc(i.key)}"><button type="button" data-q="-1" aria-label="Decrease quantity">−</button><span>${i.qty}</span><button type="button" data-q="1" aria-label="Increase quantity">+</button></div>
         </div>
-        <div class="line__price">${money(p.price * i.qty)}<button type="button" class="link" data-remove-line="${esc(i.key)}">Remove</button></div>
+        <div class="line__price">${money(S.linePrice(i) * i.qty)}<button type="button" class="link" data-remove-line="${esc(i.key)}">Remove</button></div>
       </li>`;
     }).join('') : `<li class="empty" style="padding:40px 0"><p class="lead">Your cart is empty. Plenty of records waiting, though.</p><a class="btn" href="shop.html">Browse the shop</a></li>`;
     $('#to-delivery').disabled = !items.length;
@@ -36,7 +36,7 @@
     const t = totals();
     $('#sum-lines').innerHTML = Cart.items().map(i => {
       const p = D.get(i.id);
-      return `<li><span>${i.qty} × ${esc(p.title)}</span><span>${money(p.price * i.qty)}</span></li>`;
+      return `<li><span>${i.qty} × ${esc(p.title)}</span><span>${money(S.linePrice(i) * i.qty)}</span></li>`;
     }).join('');
     $('#sum-totals').innerHTML = `
       <li><span>Subtotal</span><span>${money(t.sub)}</span></li>
@@ -83,7 +83,7 @@
     const preorders = items.filter(i => D.get(i.id).status === 'preorder');
     S.track('purchase', {
       transaction_id: num, currency: 'EUR', value: t.total, shipping: t.ship,
-      items: items.map(i => ({ item_id: i.id, item_name: D.get(i.id).title, quantity: i.qty, price: D.get(i.id).price }))
+      items: items.map(i => ({ item_id: i.id, item_name: D.get(i.id).title, quantity: i.qty, price: S.linePrice(i) }))
     });
     const name = $('#fname').value.trim();
     $('#checkout').hidden = true;
@@ -92,11 +92,11 @@
     const c = $('#confirm');
     c.hidden = false;
     c.innerHTML = `
-      ${A.disc('#C2471B', { cls: 'is-spinning', side: 'Thank you' })}
+      <div class="confirm__cover">${A.img(D.get(items[0].id), { decorative: true })}</div>
       <p class="eyebrow">Order ${num}</p>
       <h1 class="h-display">Thank you${name ? ', ' + esc(name) : ''}. <em>It's on its way.</em></h1>
       <p class="lead">A confirmation is on its way to ${esc($('#email').value)}. Total paid: <strong>${money(t.total)}</strong>.${preorders.length ? ' Pre-ordered items ship on release day.' : ''}</p>
-      <p class="lead">When your records arrive, hold your phone to the mark on the top-right corner of each sleeve. The album's hub opens straight away.</p>
+      <p class="lead">Every record ships in an Uncovered outer sleeve. Tap it with your phone when it arrives to open the record's page: tracklist, credits and where to listen.</p>
       <div class="buy-row" style="justify-content:center;margin-top:30px">
         <a class="btn" href="how-it-works.html">How the sleeve works</a>
         <a class="btn btn--ghost" href="shop.html">Back to the shop</a>
