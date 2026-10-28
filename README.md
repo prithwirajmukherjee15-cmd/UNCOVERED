@@ -14,19 +14,15 @@ python3 -m http.server 8000
 
 Opening `index.html` directly also works, but a local server is closer to production.
 
-## Pages
+## One page
 
-| Page | File |
-|---|---|
-| Homepage (Page 1 spec) | `index.html` |
-| Last releases (Page 2 spec) | `new-releases.html` |
-| Shop: categories, search, filters | `shop.html?cat=new / preorder / vinyl / players / sale / bestsellers / used` |
-| Product pages (records, turntables, pack builder) | `product.html?id=…` |
-| Our story / how it works (NFC sleeve) | `how-it-works.html` |
-| Record page opened by the NFC sleeve | `album.html?id=…` (short link `/a/<id>`) |
-| Cart & checkout | `cart.html` |
-| Help (delivery, grading, returns, NFC, FAQ, contact) | `help.html` |
-| Journal (SEO guides) | `journal/` |
+The site is a single homepage (`index.html`): video hero with logo and tagline, the
+Our concept / Current Reco / Pack Offer banner, the category menu, Last releases,
+Best-sellers, a Browse grid (the menu filters it), the pack builder, Our story and
+release alerts. Cart is a slide-out drawer.
+
+Videos: "Record Player Close Up" and "Vinyl Record Looping Background" by Beachfront
+B-Roll (Jeffrey Beach), CC BY 3.0, via the Internet Archive.
 
 ## Catalogue: real data
 
@@ -43,7 +39,6 @@ Opening `index.html` directly also works, but a local server is closer to produc
 ## Before launch
 
 - Replace the demo checkout with Stripe or Shopify, and connect the newsletter/contact forms to a backend.
-- Verify NFC sleeve tokens and sleeve codes server-side.
 - Use your own photos of used records and pre-owned decks as stock arrives.
 
 ## Docs
