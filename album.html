@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Album hub — Uncovered</title>
+<meta name="description" content="The private content hub behind an Uncovered connected sleeve: album story, interview, lyrics and live session.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#121211">
+<script>/* Short NFC links (/a/<id>) are served from a sub-path: resolve assets from the site root. */
+if (/^\/a\//.test(location.pathname)) { var b = document.createElement('base'); b.href = '/'; document.head.appendChild(b); }</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="hub">
+<a class="skip" href="#main">Skip to content</a>
+
+<main id="main" class="page">
+  <section class="hub-hero" id="hub-hero"></section>
+  <div id="hub-body"></div>
+  <section class="section" id="hub-more" aria-labelledby="more-title" style="padding-top:clamp(40px,5vw,70px)">
+    <div class="sec-head">
+      <p class="eyebrow">Your shelf</p>
+      <h2 class="h-display" id="more-title">Uncovered <em>so far</em></h2>
+      <a class="link-arrow" href="help.html#nfc">Trouble with a tap?</a>
+    </div>
+    <div class="mini-library" id="library"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/art.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/album.js" defer></script>
+</body>
+</html>
