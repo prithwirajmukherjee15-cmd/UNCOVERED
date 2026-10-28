@@ -686,3 +686,7 @@ ul, ol { margin: 0; padding: 0; }
 .interlude > video { position: absolute; left: 0; top: -15%; width: 100%; height: 130%; object-fit: cover; filter: saturate(.8) brightness(.62); }
 @media (max-width: 899px) { .hero { height: 88svh; } }
 @media (prefers-reduced-motion: reduce) { .hero__inner { transform: none; opacity: 1; } }
+
+.line__title { display: block; font: 400 19px/1.15 var(--serif); }
+.drawer__note { margin: 4px 0 0; font-size: 13px; color: var(--brass-2); text-align: center; }
+.pcard__title a::after { display: none; }

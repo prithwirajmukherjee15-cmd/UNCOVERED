@@ -73,18 +73,17 @@
   // o.info: show label + format (Last releases page). o.rank: show #1, #2, #3.
   function card(p, o = {}) {
     if (p.type === 'pack') return packCard(p);
-    const href = u(`product.html?id=${p.id}`);
     const b = badges(p);
     const sub = p.type === 'vinyl' ? p.artist : `${p.artist} · ${p.condition === 'New' ? 'New' : p.condition}`;
     const info = o.info && p.type === 'vinyl' ? [whenText(p), p.label, p.format].filter(Boolean).join(' · ') : whenText(p);
     const cta = p.status === 'preorder' ? 'Preorder' : 'Add to cart';
     return `<article class="pcard pcard--${p.type}" data-reveal>
-      <a class="pcard__media" href="${href}" tabindex="-1" aria-hidden="true">${A.img(p, { decorative: true })}
+      <div class="pcard__media">${A.img(p)}
         ${b.length ? `<span class="badges">${b.map(([c, t]) => `<span class="badge${c ? ' badge--' + c : ''}">${t}</span>`).join('')}</span>` : ''}
-        ${o.rank && p.rank && p.rank <= 3 ? `<span class="rank"><small>#</small>${p.rank}</span>` : ''}</a>
+        ${o.rank && p.rank && p.rank <= 3 ? `<span class="rank"><small>#</small>${p.rank}</span>` : ''}</div>
       <div class="pcard__meta">
         <p class="pcard__artist">${esc(sub)}</p>
-        <h3 class="pcard__title"><a href="${href}">${esc(p.title)}</a></h3>
+        <h3 class="pcard__title">${esc(p.title)}</h3>
         ${info ? `<p class="pcard__info">${esc(info)}</p>` : ''}
         ${p.status === 'low' && o.info ? `<p class="pcard__stock">${statusInfo(p).text}</p>` : ''}
         <div class="pcard__row">${priceHTML(p)}
@@ -94,14 +93,10 @@
     </article>`;
   }
   function packCard(p) {
-    const href = u(`product.html?id=${p.id}`);
-    const cheapest = D.albums.filter(a => a.condition === 'New' && a.status !== 'preorder' && a.format === 'LP').map(a => a.price).sort((a, b) => a - b).slice(0, 3);
-    const from = Math.min(...p.players.map(id => D.get(id).price)) + cheapest.reduce((n, x) => n + x, 0);
     return `<article class="pcard pcard--pack" data-reveal>
-      <a class="pcard__media" href="${href}" tabindex="-1" aria-hidden="true">${A.img(p, { decorative: true })}<span class="badges"><span class="badge badge--limited">Pack · −10%</span></span></a>
-      <div class="pcard__meta"><p class="pcard__artist">Record player + 3 records</p>
-        <h3 class="pcard__title"><a href="${href}">${esc(p.title)}</a></h3>
-        <div class="pcard__row"><span class="price">From ${money(Math.round(from * (1 - p.discount) * 100) / 100)}</span><a class="pcard__add" href="${href}">Build my pack</a></div></div>
+      <div class="pcard__media">${A.img(p)}<span class="badges"><span class="badge badge--limited">Pack · −10%</span></span></div>
+      <div class="pcard__meta"><p class="pcard__artist">Record player + 3 records</p><h3 class="pcard__title">${esc(p.title)}</h3>
+        <div class="pcard__row"><span class="price">10% off</span><a class="pcard__add" href="#pack">Build my pack</a></div></div>
     </article>`;
   }
 
@@ -109,13 +104,13 @@
     bag: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>',
     search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.4"/></svg>'
   };
-  const NAV = [['Shop', 'shop.html', 'shop'], ['Last releases', 'new-releases.html', 'releases'], ['How it works', 'how-it-works.html', 'how'], ['Journal', 'journal/index.html', 'journal']];
+  const NAV = [['Shop', '#browse'], ['Last releases', '#last'], ['Best-sellers', '#best'], ['Our story', '#story']];
   const CATS = Object.entries(D.categories);
 
   function catmenuHTML(home) {
     const current = new URLSearchParams(location.search).get('cat');
     return `<nav class="catmenu${home ? ' catmenu--home' : ''}" aria-label="Shop categories">
-      <ul class="catmenu__list">${CATS.map(([k, c]) => `<li><a href="${u('shop.html?cat=' + k)}" data-intro="${esc(c.intro)}"${body.dataset.page === 'shop' && current === k ? ' aria-current="page"' : ''}>${c.label}<sup>${D.all.filter(c.test).length}</sup></a></li>`).join('')}</ul>
+      <ul class="catmenu__list">${CATS.map(([k, c]) => `<li><a href="#browse" data-cat="${k}" data-intro="${esc(c.intro)}">${c.label}<sup>${D.all.filter(c.test).length}</sup></a></li>`).join('')}</ul>
       ${home ? `<p class="catmenu__intro" aria-live="polite">${esc(CATS[0][1].intro)}</p>` : ''}
     </nav>`;
   }
@@ -129,12 +124,11 @@
       <div class="site-head__bar">
         <div class="site-head__left">
           <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
-          <nav class="site-head__nav" aria-label="Main">${NAV.map(([t, h, k]) => `<a href="${u(h)}"${page === k ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav>
+          <nav class="site-head__nav" aria-label="Main">${NAV.map(([t, h]) => `<a href="${h}">${t}</a>`).join('')}</nav>
         </div>
-        <a class="logo" href="${u('index.html')}" aria-label="Uncovered, home"><b>UNCOVERED</b><small>Records worth uncovering.</small></a>
+        <a class="logo" href="#top" aria-label="Uncovered, back to top"><b>UNCOVERED</b><small>Records worth uncovering.</small></a>
         <div class="site-head__tools">
-          <a class="icon-btn" href="${u('shop.html?focus=search')}" aria-label="Search the shop">${ICON.search}</a>
-          <a class="icon-btn" href="${u('help.html')}" aria-label="Help" style="font:500 13px var(--sans);width:auto;padding:0 10px;border-radius:999px">Help</a>
+          <a class="icon-btn" href="#browse" data-focus-search aria-label="Search records">${ICON.search}</a>
           <button class="icon-btn" type="button" data-cart-open aria-label="Open cart">${ICON.bag}<span class="cart-count" data-cart-count>0</span></button>
         </div>
       </div>
@@ -152,8 +146,8 @@
     const menu = document.createElement('div');
     menu.className = 'menu'; menu.id = 'menu'; menu.hidden = true;
     menu.innerHTML = `<nav aria-label="Mobile">
-        <ul class="menu__main">${[...NAV, ['Help', 'help.html']].map(([t, h]) => `<li><a href="${u(h)}">${t}</a></li>`).join('')}</ul>
-        <ul class="menu__cats">${CATS.map(([k, c]) => `<li><a href="${u('shop.html?cat=' + k)}">${c.label}</a></li>`).join('')}</ul>
+        <ul class="menu__main">${NAV.map(([t, h]) => `<li><a href="${h}">${t}</a></li>`).join('')}</ul>
+        <ul class="menu__cats">${CATS.map(([k, c]) => `<li><a href="#browse" data-cat="${k}">${c.label}</a></li>`).join('')}</ul>
         <p class="menu__foot">Free delivery over ${money(FREE_SHIPPING)} · <a href="mailto:hello@uncovered.store">hello@uncovered.store</a></p>
       </nav>`;
     body.append(menu);
@@ -168,7 +162,8 @@
         <ul class="drawer__items"></ul>
         <footer class="drawer__foot">
           <div class="drawer__sub"><span>Subtotal</span><strong data-subtotal></strong></div>
-          <a class="btn btn--block" href="${u('cart.html')}">Checkout</a>
+          <button class="btn btn--block" type="button" data-checkout>Checkout</button>
+          <p class="drawer__note" role="status" hidden>Checkout opens at launch. Your cart is saved on this device.</p>
           <button class="btn btn--ghost btn--block" type="button" data-drawer-close>Keep browsing</button>
         </footer>
       </aside>`;
@@ -182,17 +177,12 @@
     return `<footer class="footer"><div class="footer__inner">
       <div class="footer__top">
         <div class="footer__brand"><b>UNCOVERED</b><p>Records worth uncovering.</p></div>
-        <div><h3>Shop</h3><ul>${CATS.map(([k, c]) => `<li><a href="${u('shop.html?cat=' + k)}">${c.label}</a></li>`).join('')}<li><a href="${u('shop.html?cat=used')}">Used &amp; graded</a></li></ul></div>
+        <div><h3>Shop</h3><ul>${CATS.map(([k, c]) => `<li><a href="#browse" data-cat="${k}">${c.label}</a></li>`).join('')}</ul></div>
         <div><h3>Uncovered</h3><ul>
-          <li><a href="${u('new-releases.html')}">Last releases</a></li>
-          <li><a href="${u('shop.html?cat=bestsellers')}">Best-sellers</a></li>
-          <li><a href="${u('how-it-works.html')}">How it works</a></li>
-          <li><a href="${u('journal/index.html')}">Journal</a></li></ul></div>
-        <div><h3>Help</h3><ul>
-          <li><a href="${u('help.html#delivery')}">Delivery</a></li>
-          <li><a href="${u('help.html#returns')}">Returns</a></li>
-          <li><a href="${u('help.html#grading')}">How we grade</a></li>
-          <li><a href="${u('help.html#faq')}">FAQ</a></li></ul></div>
+          <li><a href="#last">Last releases</a></li>
+          <li><a href="#best">Best-sellers</a></li>
+          <li><a href="#pack">Pack offer</a></li>
+          <li><a href="#story">Our story</a></li></ul></div>
         <div><h3>Say hello</h3><ul>
           <li><a href="mailto:hello@uncovered.store">hello@uncovered.store</a></li>
           <li><a href="https://www.instagram.com/" rel="noopener">Instagram</a></li>
@@ -200,7 +190,7 @@
       </div>
       <div class="footer__legal">
         <span>© ${new Date().getFullYear()} Uncovered · uncovered.store · Prices include VAT</span>
-        <span>Turntable photos: Wikimedia Commons contributors (CC BY / CC BY-SA), credited on each product page. Video: Beachfront B-Roll, CC BY 3.0. Release data: MusicBrainz. Covers: Cover Art Archive.</span>
+        <span>Video: Beachfront B-Roll, CC BY 3.0 · Turntable photos: Wikimedia Commons contributors (CC BY / CC BY-SA) · Release data: MusicBrainz · Covers: Cover Art Archive</span>
       </div>
     </div></footer>`;
   }
@@ -251,11 +241,11 @@
     $('.drawer__items', d).innerHTML = items.length ? items.map(i => {
       const p = D.get(i.id);
       return `<li class="line">${thumb(p)}
-        <div class="line__info"><a href="${u('product.html?id=' + p.id)}">${esc(p.title)}</a><small>${esc(lineLabel(i))}</small>
+        <div class="line__info"><b class="line__title">${esc(p.title)}</b><small>${esc(lineLabel(i))}</small>
           <div class="qty" data-key="${esc(i.key)}"><button type="button" data-q="-1" aria-label="Decrease quantity">−</button><span>${i.qty}</span><button type="button" data-q="1" aria-label="Increase quantity">+</button></div></div>
         <div class="line__price">${money(linePrice(i) * i.qty)}<button type="button" class="link" data-remove="${esc(i.key)}">Remove</button></div>
       </li>`;
-    }).join('') : `<li class="empty"><p>Your cart is empty.</p><a class="btn btn--ghost" href="${u('new-releases.html')}">See the last releases</a></li>`;
+    }).join('') : `<li class="empty"><p>Your cart is empty.</p><a class="btn btn--ghost" href="#last" data-drawer-close>See the last releases</a></li>`;
     $('.drawer__ship', d).innerHTML = items.length ? shipHTML(Cart.subtotal()) : '';
     $('[data-subtotal]', d).textContent = money(Cart.subtotal());
     $('.drawer__foot', d).hidden = !items.length;
@@ -271,7 +261,7 @@
       const add = e.target.closest('[data-add]');
       if (add) {
         const p = D.get(add.dataset.add);
-        if (p && p.type === 'pack') { location.href = u(`product.html?id=${p.id}`); return; }
+        if (p && p.type === 'pack') { location.hash = 'pack'; return; }
         const qtyInput = add.dataset.qtyFrom && $(add.dataset.qtyFrom);
         Cart.add(add.dataset.add, qtyInput ? (parseInt(qtyInput.value, 10) || 1) : 1);
         add.classList.add('is-added'); setTimeout(() => add.classList.remove('is-added'), 900);
@@ -279,6 +269,7 @@
       }
       if (e.target.closest('.skip')) { e.preventDefault(); const m = $('#main'); m.setAttribute('tabindex', '-1'); m.focus(); return; }
       if (e.target.closest('[data-cart-open]')) { openDrawer(); return; }
+      if (e.target.closest('[data-checkout]')) { const n = $('.drawer__note'); n.hidden = false; track('begin_checkout', { value: Cart.subtotal() }); return; }
       if (e.target.closest('[data-drawer-close]')) { closeDrawer(); return; }
       if (e.target.closest('.menu-btn')) { toggleMenu(); return; }
       const q = e.target.closest('.drawer .qty button');

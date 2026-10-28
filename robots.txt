@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /cart.html
-Disallow: /album.html
-Disallow: /a/
 
 Sitemap: https://uncovered.store/sitemap.xml
