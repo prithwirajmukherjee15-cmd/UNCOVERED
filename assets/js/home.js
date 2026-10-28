@@ -23,3 +23,14 @@
   dots.forEach((d, i) => d.addEventListener('click', () => $$('.panel', banner)[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })));
   setDot();
 })();
+
+// Hero: fade the title as you scroll; pause videos when off screen (saves battery).
+(function () {
+  const hero = document.querySelector('.hero');
+  const onScroll = () => { const p = Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.8))); hero.style.setProperty('--hp', p.toFixed(3)); };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const vids = [...document.querySelectorAll('video')];
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { vids.forEach(v => { v.removeAttribute('autoplay'); v.pause(); }); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const pr = e.target.play(); if (pr) pr.catch(() => {}); } else e.target.pause(); }), { threshold: 0.05 });
+  vids.forEach(v => io.observe(v));
+})();
