@@ -837,3 +837,34 @@ ul, ol { margin: 0; padding: 0; }
 .packvis img.is-swapping { opacity: 0; filter: blur(6px); }
 .packvis__caption { position: absolute; left: 0; bottom: 0; margin: 0; max-width: 40%; font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 899px) { .packvis__covers { width: 70%; height: 46%; } .packvis__caption { max-width: 100%; position: static; margin-top: 12px; } .packvis { padding-bottom: 0; } }
+
+/* Popup: each record's official video plays behind the scene */
+.vpop__stage { container-type: size; }
+.vpop__videos { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #000; opacity: 0; transition: opacity .8s; }
+.vpop__stage.has-video.video-ready .vpop__videos { opacity: 1; }
+.vpop__videos iframe { position: absolute; top: 50%; left: 50%; width: max(100cqw, 177.78cqh); height: max(100cqh, 56.25cqw); transform: translate(-50%, -50%) scale(1.06); border: 0; pointer-events: none; opacity: 0; transition: opacity .9s var(--ease); }
+.vpop__videos iframe.is-on.is-ready { opacity: .62; }
+.vpop__stage.has-video .vpop__videos::after { content: ''; position: absolute; inset: 0; background:
+  linear-gradient(90deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.15) 100%),
+  radial-gradient(ellipse 80% 90% at 66% 55%, rgba(var(--tint), .35), transparent 70%); }
+.vpop__stage.has-video.video-ready { background: #000; }
+.sc { z-index: 2; }
+.vpop__sound { position: absolute; z-index: 6; right: 16px; bottom: 14px; height: 30px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); background: rgba(0,0,0,.4); color: var(--text); font: 500 11.5px/1 var(--sans); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity .4s; }
+.vpop__stage.has-video .vpop__sound { opacity: 1; pointer-events: auto; }
+.vpop__sound[aria-pressed="true"] { background: var(--text); color: #0b0b0b; }
+.vpop__credit { position: absolute; z-index: 6; left: 16px; bottom: 12px; margin: 0; max-width: 60%; font-size: 10.5px; color: rgba(237,230,218,.55); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vpop__stage.has-video .ui__chips, .vpop__stage.has-video .ui__copy { text-shadow: 0 2px 16px rgba(0,0,0,.6); }
+
+/* Popup always fits the screen, buttons included */
+.vpop { padding: 12px; }
+.vpop__card { max-height: calc(100svh - 24px); display: flex; flex-direction: column; overflow: hidden; }
+.vpop__stage { flex: 1 1 auto; height: auto; min-height: 190px; max-height: 472px; aspect-ratio: auto; }
+.vpop__body { flex: 0 0 auto; }
+@media (min-height: 0px) { .vpop__card { height: min(860px, calc(100svh - 24px)); } }
+@media (max-height: 820px) {
+  .vpop__body { padding: 18px 28px 22px; }
+  .vpop__body h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin-bottom: 8px; }
+  .vpop__body > p { margin-bottom: 16px; font-size: 15px; }
+  .vpop__body .vpop__eyebrow { margin-bottom: 8px; }
+}
+@media (max-height: 620px) { .vpop__body > p { display: none; } }

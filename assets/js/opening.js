@@ -20,8 +20,59 @@
 
   const stage = $('#vpop-stage');
   const intro = $('.sc--intro', stage), ui = $('.sc--ui', stage);
+  // Each record's official video on YouTube (checked: official uploads, embedding allowed).
+  const VIDEOS = {
+    'used-kate-bush-hounds-of-love': { id: 'wp43OdtAAkM', credit: 'Kate Bush – Running Up That Hill (Official Music Video)' },
+    'air-moon-safari': { id: '_-AZkEbSb3o', credit: 'AIR – Sexy Boy (Official Video)' },
+    'used-talking-heads-remain-in-light': { id: '5IsSpAOD6K8', credit: 'Talking Heads – Once in a Lifetime (Official Video)' },
+    'used-david-bowie-hunky-dory': { id: 'ft3b1-Cm-0M', credit: 'David Bowie – Life On Mars? (Official Video)' }
+  };
+  const vidBox = $('.vpop__videos', stage), soundBtn = $('.vpop__sound', stage);
+  let soundOn = false, activeVid = null;
+  const frames = {};
+  const ytCmd = (f, func) => { try { f.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: [] }), '*'); } catch (e) { /* not ready */ } };
+  function buildVideos() {
+    Object.entries(VIDEOS).forEach(([rec, v]) => {
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${v.id}&playsinline=1&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3&enablejsapi=1&start=20`;
+      f.allow = 'autoplay; encrypted-media; picture-in-picture';
+      f.title = v.credit; f.tabIndex = -1; f.loading = 'eager';
+      // Ask the player to report its state; it is only shown once it is really playing.
+      f.addEventListener('load', () => { try { f.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: rec, channel: 'widget' }), '*'); } catch (e) { /* ignore */ } });
+      vidBox.append(f); frames[rec] = f;
+    });
+  }
+  window.addEventListener('message', e => {
+    if (!/youtube(-nocookie)?\.com$/.test(new URL(e.origin).hostname)) return;
+    let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (err) { return; }
+    const f = Object.values(frames).find(x => x.contentWindow === e.source);
+    if (!f || !d) return;
+    const state = d.event === 'onStateChange' ? d.info : d.event === 'infoDelivery' && d.info ? d.info.playerState : undefined;
+    if (state === 1) { f.classList.add('is-ready'); if (f === frames[activeVid]) stage.classList.add('video-ready'); }
+    if (d.event === 'onError') { f.classList.add('is-failed'); f.remove(); }
+  });
+  function showVideo(rec) {
+    activeVid = VIDEOS[rec] ? rec : null;
+    Object.entries(frames).forEach(([k, f]) => {
+      const on = k === activeVid;
+      f.classList.toggle('is-on', on);
+      ytCmd(f, on && soundOn ? 'unMute' : 'mute');
+    });
+    stage.classList.toggle('has-video', !!activeVid && !!frames[activeVid] && frames[activeVid].isConnected);
+    stage.classList.toggle('video-ready', !!activeVid && !!frames[activeVid] && frames[activeVid].classList.contains('is-ready'));
+    $('[data-credit]', stage).textContent = activeVid && frames[activeVid] && frames[activeVid].isConnected ? 'Video: ' + VIDEOS[activeVid].credit + ' · YouTube' : '';
+  }
+  soundBtn.addEventListener('click', () => {
+    soundOn = !soundOn;
+    soundBtn.setAttribute('aria-pressed', String(soundOn));
+    soundBtn.textContent = soundOn ? 'Sound on' : 'Sound off';
+    soundBtn.setAttribute('aria-label', soundOn ? 'Turn sound off' : 'Turn sound on');
+    if (activeVid) ytCmd(frames[activeVid], soundOn ? 'unMute' : 'mute');
+    if (soundOn) clearInterval(timer); // let them listen: stop auto-advancing
+  });
+
   const STEPS = ['Format', 'Genre', 'Record', 'Condition', 'Sides', 'Summary'];
-  const chipsIds = ['miles-davis-kind-of-blue', 'air-moon-safari', 'amy-winehouse-back-to-black', 'fleetwood-mac-rumours', 'daft-punk-random-access-memories', 'serge-gainsbourg-histoire-de-melody-nelson', 'pink-floyd-dark-side-of-the-moon'];
+  const chipsIds = ['used-kate-bush-hounds-of-love', 'air-moon-safari', 'used-talking-heads-remain-in-light', 'used-david-bowie-hunky-dory', 'miles-davis-kind-of-blue', 'amy-winehouse-back-to-black', 'fleetwood-mac-rumours', 'daft-punk-random-access-memories', 'serge-gainsbourg-histoire-de-melody-nelson', 'pink-floyd-dark-side-of-the-moon'];
   const img = id => `${root}${D.get(id).img}`;
 
   const tintCache = {};
@@ -42,10 +93,10 @@
 
   const scenes = [
     { kind: 'intro', headline: 'Uncover your vinyl.', logo: true },
-    { kind: 'intro', headline: 'Your record.', label: 'miles-davis-kind-of-blue', caption: 'Kind of Blue<sup>®</sup>' },
-    { kind: 'ui', step: 'Record', title: 'Kind of Blue', ghost: 'Kind of Blue', desc: 'Miles Davis, 1959. Warm, deep and made for a rainy Sunday.', label: 'miles-davis-kind-of-blue', chips: 'covers' },
+    { kind: 'intro', headline: 'Your record.', label: 'used-kate-bush-hounds-of-love', caption: 'Hounds of Love<sup>®</sup>' },
+    { kind: 'ui', step: 'Record', title: 'Hounds of Love', ghost: 'Hounds of Love', desc: "Kate Bush, 1985. 'Running Up That Hill' on side one, 'The Ninth Wave' on side two.", label: 'used-kate-bush-hounds-of-love', chips: 'covers' },
     { kind: 'ui', step: 'Record', title: 'Moon Safari', ghost: 'Moon Safari', desc: 'Air, 1998. Versailles at dusk, on 180 grams.', label: 'air-moon-safari', chips: 'covers' },
-    { kind: 'ui', step: 'Condition', title: 'Graded.', ghost: 'Graded', desc: 'Every used record cleaned, played and graded by hand.', label: 'used-velvet-underground-and-nico', mode: 'zoom', tags: ['NM', 'VG+', 'VG', 'G'], on: 1 },
+    { kind: 'ui', step: 'Condition', title: 'Graded.', ghost: 'Graded', desc: 'Every used record cleaned, played and graded by hand.', label: 'used-talking-heads-remain-in-light', mode: 'zoom', tags: ['NM', 'VG+', 'VG', 'G'], on: 0 },
     { kind: 'ui', step: 'Sides', title: 'Flip.', ghost: 'Flip', desc: 'Side A, side B. Both checked before it ships.', label: 'used-david-bowie-hunky-dory', mode: 'flip', tags: ['Side A', 'Side B'], on: 1 }
   ];
 
@@ -53,6 +104,7 @@
   async function play(n) {
     i = n % scenes.length;
     const s = scenes[i];
+    showVideo(s.label);
     intro.classList.toggle('is-on', s.kind === 'intro');
     ui.classList.toggle('is-on', s.kind === 'ui');
     if (s.kind === 'intro') {
@@ -89,12 +141,15 @@
     pop.hidden = false;
     html.classList.add('is-locked');
     requestAnimationFrame(() => pop.classList.add('is-open'));
+    buildVideos();
     next();
-    timer = setInterval(next, 2400);
+    timer = setInterval(next, 4200);
     setTimeout(() => $('.vpop__card', pop).focus({ preventScroll: true }), 600);
   }
   function close(go) {
     clearInterval(timer);
+    Object.values(frames).forEach(f => ytCmd(f, 'pauseVideo'));
+    setTimeout(() => { vidBox.innerHTML = ''; }, 900);
     try { sessionStorage.setItem(KEY, '1'); } catch (e) { /* storage blocked */ }
     pop.classList.remove('is-open'); pop.classList.add('is-closing');
     html.classList.remove('is-locked');
