@@ -1,5 +1,7 @@
 # Uncovered — SEO plan
 
+> **Note:** the site is currently a single homepage. The journal and shop pages this plan refers to were removed and can be restored from the git history.
+
 How the site targets the three search features from the brief, what's already built,
 and what still needs checking. **No search volumes are included yet**: they must be
 pulled from a keyword tool (see "Next steps").
