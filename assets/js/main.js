@@ -125,14 +125,13 @@
     head.className = 'site-head';
     head.innerHTML = `
       <div class="site-head__bar">
-        <div class="site-head__left">
-          <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
-          <nav class="site-head__nav" aria-label="Main">${NAV.map(([t, h]) => `<a href="${h}">${t}</a>`).join('')}</nav>
-        </div>
-        <a class="logo" href="#top" aria-label="Uncovered, back to top"><b>UNCOVERED</b><small>Records worth uncovering.</small></a>
+        <a class="logo" href="#top" aria-label="Uncovered, back to top"><span class="logo__mark" aria-hidden="true"></span><b>UNCOVERED</b></a>
+        <nav class="site-head__nav" aria-label="Main">${NAV.map(([t, h]) => `<a href="${h}">${t}</a>`).join('')}</nav>
         <div class="site-head__tools">
           <a class="icon-btn" href="#browse" data-focus-search aria-label="Search records">${ICON.search}</a>
           <button class="icon-btn" type="button" data-cart-open aria-label="Open cart">${ICON.bag}<span class="cart-count" data-cart-count>0</span></button>
+          <a class="pill-glass" href="#pack">Build my pack</a>
+          <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
         </div>
       </div>
       ${home ? '' : catmenuHTML(false)}`;

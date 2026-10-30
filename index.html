@@ -17,7 +17,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=8">
+<link rel="stylesheet" href="assets/css/style.css?v=11">
+<script>/* start in the "small window" state before first paint */ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("is-opening");</script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "Organization", "name": "Uncovered", "slogan": "Records worth uncovering.", "url": "https://uncovered.store/", "logo": "https://uncovered.store/favicon.svg", "email": "hello@uncovered.store"}
 </script>
@@ -25,42 +26,58 @@
 <body data-page="home" class="home" id="top">
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- Opening intro: frosted card over the hero, records cycling like a configurator -->
-<div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="intro-title" hidden>
-  <div class="intro__scrim" data-intro-close></div>
-  <div class="intro__card">
-    <button class="intro__x" type="button" data-intro-close aria-label="Close">✕</button>
-    <div class="intro__stage">
-      <p class="intro__kicker">Your next record.</p>
-      <div class="intro__ghost" aria-hidden="true"></div>
-      <div class="intro__info" aria-live="polite"><span class="intro__artist"></span><b class="intro__title"></b></div>
-      <div class="intro__disc"><span class="vinyl vinyl--big"><span class="vinyl__label"></span></span></div>
-      <div class="intro__floor" aria-hidden="true"></div>
-      <div class="intro__swatches" role="group" aria-label="Choose a record"></div>
+<!-- Hero: opens as a rounded window, expands to full screen -->
+<section class="hero" aria-label="Uncovered">
+  <div class="hero__frame">
+    <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/video/record-player.jpg" aria-hidden="true">
+      <source src="assets/video/record-player.webm" type="video/webm">
+      <source src="assets/video/record-player.mp4" type="video/mp4">
+    </video>
+    <div class="hero__shade" aria-hidden="true"></div>
+  </div>
+  <div class="hero__glass">
+    <div>
+      <h1 class="hero__title">Records worth uncovering.</h1>
+      <p class="hero__sub">New releases, preorders and hand-graded used vinyl.</p>
+      <div class="hero__cta"><a class="btn btn--brass" href="#pack">Build my pack</a><a class="hero__link" href="#last">Shop last releases</a></div>
     </div>
-    <div class="intro__body">
-      <p class="intro__eyebrow">New this week at Uncovered</p>
-      <h2 id="intro-title">We dig through the crates.<br><span>You uncover the records.</span></h2>
-      <p>Fresh pressings, rare finds and hand-graded second-hand gems. Every one checked by hand before it ships.</p>
-      <div class="intro__actions"><button class="btn btn--brass" type="button" data-intro-go>Start digging</button><button class="intro__later" type="button" data-intro-close>Maybe later ›</button></div>
+    <a class="hero__side" href="#story">Our story</a>
+  </div>
+</section>
+
+<!-- Opening popup (same structure as the reference): animated stage + text -->
+<div class="vpop" id="vpop" role="dialog" aria-modal="true" aria-labelledby="vpop-title" hidden>
+  <div class="vpop__scrim" data-vpop-close></div>
+  <div class="vpop__card" tabindex="-1">
+    <button class="vpop__x" type="button" data-vpop-close aria-label="Close">✕</button>
+    <div class="vpop__stage" id="vpop-stage">
+      <!-- scene 1 & 2: centred record with title -->
+      <div class="sc sc--intro">
+        <p class="sc__headline" data-headline>Uncover your vinyl.</p>
+        <div class="sc__disc"><span class="vinyl vinyl--big"><span class="vinyl__label" data-label></span></span><span class="sc__floor"></span></div>
+        <p class="sc__caption" data-caption></p>
+      </div>
+      <!-- scenes 3–6: the finder UI -->
+      <div class="sc sc--ui">
+        <div class="ui__bar"><b>UNCOVERED</b><span class="ui__steps" data-steps></span><i></i></div>
+        <div class="ui__ghost" data-ghost></div>
+        <div class="ui__copy">
+          <span class="ui__step" data-step></span>
+          <p class="ui__title" data-title></p>
+          <p class="ui__desc" data-desc></p>
+          <div class="ui__chips" data-chips></div>
+        </div>
+        <div class="ui__disc"><span class="vinyl vinyl--big"><span class="vinyl__label" data-ui-label></span></span><span class="sc__floor"></span></div>
+      </div>
+    </div>
+    <div class="vpop__body">
+      <p class="vpop__eyebrow">The all-new Uncovered</p>
+      <h2 id="vpop-title">We dug through everything.<br><span>And that uncovers everything.</span></h2>
+      <p>Finding something exceptional has never been this simple.</p>
+      <div class="vpop__actions"><button class="vpop__try" type="button" data-vpop-go>Try it now</button><button class="vpop__later" type="button" data-vpop-close>Maybe later ›</button></div>
     </div>
   </div>
 </div>
-
-<!-- Block 1 — Header: logo + tagline, over full-screen video -->
-<section class="hero" aria-label="Uncovered">
-  <video class="hero__video" data-parallax="-0.18" autoplay muted loop playsinline preload="auto" poster="assets/video/record-player.jpg" aria-hidden="true">
-    <source src="assets/video/record-player.webm" type="video/webm">
-    <source src="assets/video/record-player.mp4" type="video/mp4">
-  </video>
-  <div class="hero__shade" aria-hidden="true"></div>
-  <div class="hero__inner">
-    <h1 class="masthead__word"><span class="sr-only">Uncovered: vinyl records, preorders and record players</span><span class="clip" aria-hidden="true" data-wordmark>UNCOVERED</span></h1>
-    <p class="masthead__tag">Records worth uncovering.</p>
-    <div class="hero__cta"><a class="btn" href="#last">Shop last releases</a><a class="btn btn--ghost" href="#pack">Build my pack</a></div>
-  </div>
-  <a class="hero__cue" href="#banner" aria-label="Scroll to highlights"><span></span></a>
-</section>
 
 <main id="main">
 
@@ -211,12 +228,12 @@
 <div id="site-footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-<script src="assets/js/catalog.js?v=8" defer></script>
-<script src="assets/js/data.js?v=8" defer></script>
-<script src="assets/js/art.js?v=8" defer></script>
-<script src="assets/js/main.js?v=8" defer></script>
-<script src="assets/js/listen.js?v=8" defer></script>
-<script src="assets/js/home.js?v=8" defer></script>
-<script src="assets/js/intro.js?v=8" defer></script>
+<script src="assets/js/catalog.js?v=11" defer></script>
+<script src="assets/js/data.js?v=11" defer></script>
+<script src="assets/js/art.js?v=11" defer></script>
+<script src="assets/js/main.js?v=11" defer></script>
+<script src="assets/js/listen.js?v=11" defer></script>
+<script src="assets/js/home.js?v=11" defer></script>
+<script src="assets/js/opening.js?v=11" defer></script>
 </body>
 </html>
