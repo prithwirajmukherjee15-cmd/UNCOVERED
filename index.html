@@ -17,13 +17,35 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=5">
+<link rel="stylesheet" href="assets/css/style.css?v=8">
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "Organization", "name": "Uncovered", "slogan": "Records worth uncovering.", "url": "https://uncovered.store/", "logo": "https://uncovered.store/favicon.svg", "email": "hello@uncovered.store"}
 </script>
 </head>
 <body data-page="home" class="home" id="top">
 <a class="skip" href="#main">Skip to content</a>
+
+<!-- Opening intro: frosted card over the hero, records cycling like a configurator -->
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="intro-title" hidden>
+  <div class="intro__scrim" data-intro-close></div>
+  <div class="intro__card">
+    <button class="intro__x" type="button" data-intro-close aria-label="Close">✕</button>
+    <div class="intro__stage">
+      <p class="intro__kicker">Your next record.</p>
+      <div class="intro__ghost" aria-hidden="true"></div>
+      <div class="intro__info" aria-live="polite"><span class="intro__artist"></span><b class="intro__title"></b></div>
+      <div class="intro__disc"><span class="vinyl vinyl--big"><span class="vinyl__label"></span></span></div>
+      <div class="intro__floor" aria-hidden="true"></div>
+      <div class="intro__swatches" role="group" aria-label="Choose a record"></div>
+    </div>
+    <div class="intro__body">
+      <p class="intro__eyebrow">New this week at Uncovered</p>
+      <h2 id="intro-title">We dig through the crates.<br><span>You uncover the records.</span></h2>
+      <p>Fresh pressings, rare finds and hand-graded second-hand gems. Every one checked by hand before it ships.</p>
+      <div class="intro__actions"><button class="btn btn--brass" type="button" data-intro-go>Start digging</button><button class="intro__later" type="button" data-intro-close>Maybe later ›</button></div>
+    </div>
+  </div>
+</div>
 
 <!-- Block 1 — Header: logo + tagline, over full-screen video -->
 <section class="hero" aria-label="Uncovered">
@@ -189,11 +211,12 @@
 <div id="site-footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-<script src="assets/js/catalog.js?v=5" defer></script>
-<script src="assets/js/data.js?v=5" defer></script>
-<script src="assets/js/art.js?v=5" defer></script>
-<script src="assets/js/main.js?v=5" defer></script>
-<script src="assets/js/listen.js?v=5" defer></script>
-<script src="assets/js/home.js?v=5" defer></script>
+<script src="assets/js/catalog.js?v=8" defer></script>
+<script src="assets/js/data.js?v=8" defer></script>
+<script src="assets/js/art.js?v=8" defer></script>
+<script src="assets/js/main.js?v=8" defer></script>
+<script src="assets/js/listen.js?v=8" defer></script>
+<script src="assets/js/home.js?v=8" defer></script>
+<script src="assets/js/intro.js?v=8" defer></script>
 </body>
 </html>
