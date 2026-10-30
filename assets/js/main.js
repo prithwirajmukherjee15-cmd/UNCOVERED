@@ -70,6 +70,9 @@
   const priceHTML = p => `<span class="price">${p.oldPrice ? `<s>${money(p.oldPrice)}</s>` : ''}${money(p.price)}</span>`;
   const whenText = p => p.type !== 'vinyl' ? '' : (p.tags.includes('new') || p.status === 'preorder') ? shortDate(p.released) : String(p.originalYear || '');
 
+  // A record with the album cover as its centre label; slides out of the sleeve on hover.
+  const vinyl = p => `<span class="vinyl" aria-hidden="true"><span class="vinyl__label" style="background-image:url('${ROOT}${p.img}')"></span></span>`;
+
   // o.info: show label + format (Last releases page). o.rank: show #1, #2, #3.
   function card(p, o = {}) {
     if (p.type === 'pack') return packCard(p);
@@ -78,9 +81,9 @@
     const info = o.info && p.type === 'vinyl' ? [whenText(p), p.label, p.format].filter(Boolean).join(' · ') : whenText(p);
     const cta = p.status === 'preorder' ? 'Preorder' : 'Add to cart';
     return `<article class="pcard pcard--${p.type}" data-reveal>
-      <div class="pcard__media">${A.img(p)}
+      <div class="pcard__sleeve">${p.type === 'vinyl' ? vinyl(p) : ''}<div class="pcard__media">${A.img(p)}
         ${b.length ? `<span class="badges">${b.map(([c, t]) => `<span class="badge${c ? ' badge--' + c : ''}">${t}</span>`).join('')}</span>` : ''}
-        ${o.rank && p.rank && p.rank <= 3 ? `<span class="rank"><small>#</small>${p.rank}</span>` : ''}</div>
+        ${o.rank && p.rank && p.rank <= 3 ? `<span class="rank"><small>#</small>${p.rank}</span>` : ''}</div></div>
       <div class="pcard__meta">
         <p class="pcard__artist">${esc(sub)}</p>
         <h3 class="pcard__title">${esc(p.title)}</h3>
@@ -418,7 +421,7 @@
   syncCount();
   renderDrawer();
 
-  window.SITE = { D, A, u, $, $$, money, date, shortDate, esc, card, priceHTML, statusInfo, badges, Cart, linePrice, track, store, observeNew, hydrate,
+  window.SITE = { vinyl, D, A, u, $, $$, money, date, shortDate, esc, card, priceHTML, statusInfo, badges, Cart, linePrice, track, store, observeNew, hydrate,
     refresh: () => { measure(); requestUpdate(); }, FREE_SHIPPING, reduced, desktop, shipHTML, lineLabel, thumb };
 
   document.addEventListener('DOMContentLoaded', () => {
