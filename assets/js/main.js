@@ -80,8 +80,11 @@
     const sub = p.type === 'vinyl' ? p.artist : `${p.artist} · ${p.condition === 'New' ? 'New' : p.condition}`;
     const info = o.info && p.type === 'vinyl' ? [whenText(p), p.label, p.format].filter(Boolean).join(' · ') : whenText(p);
     const cta = p.status === 'preorder' ? 'Preorder' : 'Add to cart';
-    return `<article class="pcard pcard--${p.type}" data-reveal>
-      <div class="pcard__sleeve">${p.type === 'vinyl' ? vinyl(p) : ''}<div class="pcard__media">${A.img(p)}
+    const glow = p.type === 'vinyl' ? `<span class="glow" aria-hidden="true"></span>` : '';
+    const video = p.video ? ` data-video="${p.video.id}" data-video-title="${esc(p.video.title)}"` : '';
+    return `<article class="pcard pcard--${p.type}" data-id="${p.id}" data-genre="${esc(p.genre)}"${video} data-reveal>
+      <div class="pcard__sleeve">${p.type === 'vinyl' ? vinyl(p) : ''}${glow}<div class="pcard__media">${A.img(p)}
+        ${p.video ? `<span class="pcard__vid" aria-hidden="true"></span><button class="pcard__sound" type="button" aria-pressed="false" aria-label="Unmute the video">${SOUND_OFF}</button><span class="pcard__play" aria-hidden="true"></span>` : ''}
         ${b.length ? `<span class="badges">${b.map(([c, t]) => `<span class="badge${c ? ' badge--' + c : ''}">${t}</span>`).join('')}</span>` : ''}
         ${o.rank && p.rank && p.rank <= 3 ? `<span class="rank"><small>#</small>${p.rank}</span>` : ''}</div></div>
       <div class="pcard__meta">
@@ -102,6 +105,9 @@
         <div class="pcard__row"><span class="price">10% off</span><a class="pcard__add" href="#pack">Build my pack</a></div></div>
     </article>`;
   }
+
+  const SOUND_OFF = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="m16 9 5 6m0-6-5 6" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>';
+  const SOUND_ON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>';
 
   const ICON = {
     bag: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>',
@@ -420,7 +426,7 @@
   syncCount();
   renderDrawer();
 
-  window.SITE = { vinyl, D, A, u, $, $$, money, date, shortDate, esc, card, priceHTML, statusInfo, badges, Cart, linePrice, track, store, observeNew, hydrate,
+  window.SITE = { SOUND_ON, SOUND_OFF, vinyl, D, A, u, $, $$, money, date, shortDate, esc, card, priceHTML, statusInfo, badges, Cart, linePrice, track, store, observeNew, hydrate,
     refresh: () => { measure(); requestUpdate(); }, FREE_SHIPPING, reduced, desktop, shipHTML, lineLabel, thumb };
 
   document.addEventListener('DOMContentLoaded', () => {

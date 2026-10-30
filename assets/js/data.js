@@ -3,6 +3,8 @@
   const RAW = window.UNCOVERED_DATA;
   const albums = RAW.albums, players = RAW.players, packs = RAW.packs;
   // Code printed on each Uncovered sleeve (fallback for phones without NFC).
+  const VIDEOS = window.UNCOVERED_VIDEOS || {};
+  albums.forEach(a => { if (VIDEOS[a.id]) a.video = VIDEOS[a.id]; });
   albums.forEach(a => { a.code = 'UNC-' + a.mb.replace(/-/g, '').slice(0, 6).toUpperCase(); });
   const all = [...albums, ...players, ...packs];
   const byId = Object.fromEntries(all.map(p => [p.id, p]));
