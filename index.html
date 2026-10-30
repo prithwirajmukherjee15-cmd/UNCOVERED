@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=11">
+<link rel="stylesheet" href="assets/css/style.css?v=13">
 <script>/* start in the "small window" state before first paint */ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("is-opening");</script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "Organization", "name": "Uncovered", "slogan": "Records worth uncovering.", "url": "https://uncovered.store/", "logo": "https://uncovered.store/favicon.svg", "email": "hello@uncovered.store"}
@@ -186,7 +186,11 @@
   <!-- Pack builder -->
   <section class="section section--tight" id="pack" aria-labelledby="pack-title">
     <div class="rotw" data-reveal>
-      <div class="rotw__media"><img src="assets/img/players/rega-p3-white-lifestyle.jpg" alt="" style="aspect-ratio:4/3"></div>
+      <div class="packvis" id="pack-vis" aria-live="polite">
+        <div class="packvis__player"><img id="pv-player" src="assets/img/players/audio-technica-at-lp60.jpg" alt=""></div>
+        <div class="packvis__covers"><img id="pv-0" alt=""><img id="pv-1" alt=""><img id="pv-2" alt=""></div>
+        <p class="packvis__caption" id="pv-caption"></p>
+      </div>
       <div>
         <p class="eyebrow">Pack offer · 10% off</p>
         <h3 id="pack-title">Build my pack</h3>
@@ -228,12 +232,12 @@
 <div id="site-footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-<script src="assets/js/catalog.js?v=11" defer></script>
-<script src="assets/js/data.js?v=11" defer></script>
-<script src="assets/js/art.js?v=11" defer></script>
-<script src="assets/js/main.js?v=11" defer></script>
-<script src="assets/js/listen.js?v=11" defer></script>
-<script src="assets/js/home.js?v=11" defer></script>
-<script src="assets/js/opening.js?v=11" defer></script>
+<script src="assets/js/catalog.js?v=13" defer></script>
+<script src="assets/js/data.js?v=13" defer></script>
+<script src="assets/js/art.js?v=13" defer></script>
+<script src="assets/js/main.js?v=13" defer></script>
+<script src="assets/js/listen.js?v=13" defer></script>
+<script src="assets/js/home.js?v=13" defer></script>
+<script src="assets/js/opening.js?v=13" defer></script>
 </body>
 </html>
