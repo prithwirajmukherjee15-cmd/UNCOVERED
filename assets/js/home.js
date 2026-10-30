@@ -65,10 +65,23 @@
   const drawPack = () => {
     $('[data-thumb="player"]').innerHTML = A.img(D.get($('#pick-player').value), { decorative: true });
     picks().forEach((x, i) => { $(`[data-thumb="${i}"]`).innerHTML = A.img(D.get(x), { decorative: true }); });
+    // Left-hand visual: the chosen turntable, with the three chosen records in front.
+    const root = document.body.dataset.root || '';
+    const swap = (el, src, alt) => {
+      if (el.getAttribute('src') === src) return;
+      el.classList.add('is-swapping');
+      const pre = new Image(); pre.src = src;
+      pre.onload = pre.onerror = () => { el.src = src; el.alt = alt; requestAnimationFrame(() => el.classList.remove('is-swapping')); };
+    };
+    const pl = D.get($('#pick-player').value);
+    swap($('#pv-player'), root + pl.img, `${pl.artist} ${pl.title} turntable`);
+    picks().forEach((x, i) => { const r = D.get(x); swap($('#pv-' + i), root + r.img, `${r.title} by ${r.artist}`); });
+    $('#pv-caption').textContent = `${pl.artist} ${pl.title} + ${picks().map(x => D.get(x).title).join(', ')}`;
     const tt = total();
     $('#pack-price').innerHTML = `<s>${money(tt.sum)}</s>${money(tt.price)}`;
   };
   $('#picks').addEventListener('change', drawPack);
+  $('#picks').addEventListener('input', drawPack);
   drawPack();
   $('#add-pack').addEventListener('click', e => {
     S.Cart.add(pack.id, 1, { player: $('#pick-player').value, picks: picks(), price: total().price });

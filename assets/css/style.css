@@ -823,3 +823,17 @@ ul, ol { margin: 0; padding: 0; }
 .interlude > video { position: absolute; left: 0; top: -15%; width: 100%; height: 130%; object-fit: cover; filter: saturate(.8) brightness(.62); }
 .home .banner { margin-top: clamp(40px, 5vw, 70px); }
 .home .site-head:not(.is-scrolled) .logo { opacity: 1; pointer-events: auto; }
+
+/* Pack builder visual: chosen turntable + chosen records */
+.packvis { position: relative; padding-bottom: 34px; }
+.packvis__player { border-radius: 4px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--bg-3); box-shadow: 0 40px 70px -30px rgba(0,0,0,.95); }
+.packvis__player img { width: 100%; height: 100%; object-fit: cover; }
+.packvis__covers { position: absolute; right: -2%; bottom: 0; width: 58%; height: 52%; }
+.packvis__covers img { position: absolute; bottom: 0; width: 46%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; box-shadow: 0 24px 40px -14px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); transform-origin: 50% 100%; }
+.packvis__covers img:nth-child(1) { left: 0; transform: rotate(-9deg); }
+.packvis__covers img:nth-child(2) { left: 27%; transform: rotate(-1deg) translateY(-8%); z-index: 1; }
+.packvis__covers img:nth-child(3) { left: 54%; transform: rotate(8deg); z-index: 2; }
+.packvis img { transition: opacity .35s var(--ease), filter .35s; }
+.packvis img.is-swapping { opacity: 0; filter: blur(6px); }
+.packvis__caption { position: absolute; left: 0; bottom: 0; margin: 0; max-width: 40%; font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 899px) { .packvis__covers { width: 70%; height: 46%; } .packvis__caption { max-width: 100%; position: static; margin-top: 12px; } .packvis { padding-bottom: 0; } }
