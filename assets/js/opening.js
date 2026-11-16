@@ -154,7 +154,7 @@
     pop.classList.remove('is-open'); pop.classList.add('is-closing');
     html.classList.remove('is-locked');
     setTimeout(() => { pop.hidden = true; pop.classList.remove('is-closing'); }, 800);
-    if (go) setTimeout(() => $('#browse').scrollIntoView({ behavior: S.reduced ? 'auto' : 'smooth' }), 400);
+    if (go) setTimeout(() => $('#last').scrollIntoView({ behavior: S.reduced ? 'auto' : 'smooth' }), 400);
     S.track(go ? 'opening_try_it' : 'opening_dismiss');
   }
   pop.addEventListener('click', e => {

@@ -903,3 +903,40 @@ ul, ol { margin: 0; padding: 0; }
 .pcard__row .price { display: inline-flex; flex-direction: column; line-height: 1.15; }
 .pcard__row .price s { font-size: .78em; margin: 0 0 2px; }
 @media (prefers-reduced-motion: reduce) { .pcard__sleeve .glow, .pcard__sleeve .glow::after { animation: none; } }
+
+/* ---------- Two pages: shop and legal ---------- */
+/* The menu icon is for phones only; desktop shows the full nav. */
+.menu-btn { display: none; }
+@media (max-width: 899px) { .menu-btn { display: inline-grid; } }
+.page-shop, .page-legal { background: #000; }
+
+
+/* Footer: brand name and legal links only */
+.footer--legal .footer__inner { padding: clamp(36px, 4vw, 56px) var(--pad) clamp(30px, 3vw, 44px); }
+.footer__name { font: 400 clamp(26px, 2.4vw, 32px)/1.1 var(--serif); color: var(--text); margin: 0 0 14px; }
+.footer__line { margin: 0; font-size: 14px; line-height: 1.9; color: var(--muted); }
+.footer__line a { font-size: 14px; color: var(--text-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.35); }
+.footer__line a:hover { color: var(--brass-2); text-decoration-color: currentColor; }
+.footer__line span { margin: 0 6px; color: var(--dim); }
+
+/* Legal page */
+.legal { max-width: 820px; margin: 0 auto; padding: clamp(40px, 6vw, 90px) var(--pad) clamp(30px, 4vw, 60px); }
+.legal h1 { margin-bottom: 18px; }
+.legal__intro { color: var(--muted); margin-bottom: 30px; }
+.legal section { padding: 28px 0; border-top: 1px solid var(--line); scroll-margin-top: calc(var(--head) + 20px); }
+.legal h2 { font: 400 clamp(26px, 2.6vw, 34px)/1.15 var(--serif); margin: 0 0 14px; }
+.legal p { color: var(--text-2); line-height: 1.7; margin: 0 0 12px; }
+.legal a { color: var(--brass-2); }
+/* Shop page on phones: the category row in the header scrolls sideways instead of widening the page */
+@media (max-width: 899px) {
+  .site-head .catmenu { overflow-x: auto; scrollbar-width: none; }
+  .site-head .catmenu::-webkit-scrollbar { display: none; }
+  .site-head .catmenu__list { width: max-content; }
+  .cat-tabs { overflow-x: auto; scrollbar-width: none; }
+}
+@media (max-width: 899px) {
+  .rotw { grid-template-columns: minmax(0, 1fr); }
+  .rotw > * { min-width: 0; }
+  .picks .select { min-width: 0; width: 100%; }
+  .packvis__covers { right: 0; }
+}

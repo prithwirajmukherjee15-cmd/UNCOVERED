@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=18">
+<link rel="stylesheet" href="assets/css/style.css?v=19">
 <script>/* start in the "small window" state before first paint */ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("is-opening");</script>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "Organization", "name": "Uncovered", "slogan": "Records worth uncovering.", "url": "https://uncovered.store/", "logo": "https://uncovered.store/favicon.svg", "email": "hello@uncovered.store"}
@@ -39,9 +39,9 @@
     <div>
       <h1 class="hero__title">Records worth uncovering.</h1>
       <p class="hero__sub">New releases, preorders and hand-graded used vinyl.</p>
-      <div class="hero__cta"><a class="btn btn--brass" href="#pack">Build my pack</a><a class="hero__link" href="#last">Shop last releases</a></div>
+      <div class="hero__cta"><a class="btn btn--brass" href="shop.html#pack">Build my pack</a><a class="hero__link" href="#last">Shop last releases</a></div>
     </div>
-    <a class="hero__side" href="#story">Our story</a>
+    <a class="hero__side" href="shop.html#story">Our story</a>
   </div>
 </section>
 
@@ -98,7 +98,7 @@
         <span class="panel__num">01</span>
         <h2>Our concept</h2>
         <p>We dig through the crates so you don't have to. New releases, rare finds and second-hand gems, each one checked by hand before it ships.</p>
-        <a class="btn" href="#story">Discover our story</a>
+        <a class="btn" href="shop.html#story">Discover our story</a>
       </div>
     </article>
 
@@ -123,14 +123,14 @@
         <span class="panel__num">03</span>
         <h2>Pack Offer</h2>
         <p>Start your collection the right way: one record player and three records of your choice at a special price.</p>
-        <a class="btn" href="#pack">Build my pack</a>
+        <a class="btn" href="shop.html#pack">Build my pack</a>
         <p style="margin:14px 0 0;font-size:11px;color:var(--dim)">Photo: kenji ross, CC BY 2.0</p>
       </div>
     </article>
   </section>
   <div class="banner__dots" id="banner-dots" aria-hidden="true"><button></button><button></button><button></button></div>
 
-  <!-- Block 3 — Main menu: filters the "Browse" grid below -->
+  <!-- Block 3 — Main menu: opens the matching category on the shop page -->
   <div id="catmenu-slot"></div>
 
   <!-- Block 4 — Last releases -->
@@ -140,7 +140,7 @@
         <h2 class="h-display" id="lr-title" data-split>Last releases</h2>
         <p data-reveal>Fresh out of the press. The newest records in the shop, updated every week.</p>
       </div>
-      <a class="link-arrow" href="#browse" data-cat="new">See all last releases</a>
+      <a class="link-arrow" href="shop.html?cat=new#browse">See all last releases</a>
     </div>
     <div class="row" id="last-releases"></div>
   </section>
@@ -152,7 +152,7 @@
         <h2 class="h-display" id="bs-title" data-split>Best-sellers</h2>
         <p data-reveal>The records everyone is spinning right now. Chosen by our customers, approved by our team.</p>
       </div>
-      <a class="link-arrow" href="#browse" data-cat="bestsellers">See all best-sellers</a>
+      <a class="link-arrow" href="shop.html?cat=bestsellers#browse">See all best-sellers</a>
     </div>
     <div class="row" id="best-sellers"></div>
   </section>
@@ -161,88 +161,24 @@
     <video data-parallax="0.12" autoplay muted loop playsinline preload="metadata" poster="assets/video/record-bg.jpg" aria-hidden="true"><source src="assets/video/record-bg.webm" type="video/webm"><source src="assets/video/record-bg.mp4" type="video/mp4"></video>
     <div class="interlude__text">
       <p data-split>Every record, checked by hand.</p>
-      <a class="btn" href="#browse" data-cat="used">Shop used &amp; graded</a>
+      <a class="btn" href="shop.html?cat=used#browse">Shop used &amp; graded</a>
     </div>
     <span class="interlude__credit">Footage: <a href="https://archive.org/details/RecordBackground" rel="noopener">Beachfront B-Roll</a>, CC BY 3.0</span>
   </section>
 
-  <!-- Browse: every category from the main menu, with search -->
-  <section class="section section--tight" id="browse" aria-labelledby="browse-title">
-    <div class="sec-head">
-      <div>
-        <h2 class="h-display" id="browse-title">Browse</h2>
-        <p id="browse-intro">New, reissued and used records, and the turntables to play them.</p>
-      </div>
-    </div>
-    <div class="cat-tabs" id="browse-tabs" style="padding-inline:0"></div>
-    <div class="toolbar">
-      <div class="search">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.4"/></svg>
-        <label class="sr-only" for="q">Search records</label>
-        <input id="q" type="search" placeholder="Search artists, albums, labels" autocomplete="off">
-      </div>
-    </div>
-    <p class="result-count" id="browse-count" role="status" aria-live="polite"></p>
-    <div class="grid" id="browse-grid"></div>
-  </section>
-
-  <!-- Pack builder -->
-  <section class="section section--tight" id="pack" aria-labelledby="pack-title">
-    <div class="rotw" data-reveal>
-      <div class="packvis" id="pack-vis" aria-live="polite">
-        <div class="packvis__player"><img id="pv-player" src="assets/img/players/audio-technica-at-lp60.jpg" alt=""></div>
-        <div class="packvis__covers"><img id="pv-0" alt=""><img id="pv-1" alt=""><img id="pv-2" alt=""></div>
-        <p class="packvis__caption" id="pv-caption"></p>
-      </div>
-      <div>
-        <p class="eyebrow">Pack offer · 10% off</p>
-        <h3 id="pack-title">Build my pack</h3>
-        <p class="rotw__by">One record player and three records of your choice.</p>
-        <div class="picks" id="picks"></div>
-        <div class="buy-row" style="margin-top:22px"><span class="price" id="pack-price"></span><button class="btn" type="button" id="add-pack">Add pack to cart</button></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our story -->
-  <section class="section section--tight" id="story" aria-labelledby="story-title">
-    <div class="sec-head"><div><p class="eyebrow">Our story</p><h2 class="h-display" id="story-title" data-split>We dig through the crates <em>so you don't have to.</em></h2></div></div>
-    <div class="extras-cards">
-      <article class="ecard" data-reveal><h3>Dig</h3><p>New pressings every Friday, preorders before they sell out, and second-hand records from collections, fairs and flea markets.</p></article>
-      <article class="ecard" data-reveal style="--d:80ms"><h3>Check</h3><p>Used records are cleaned, played and graded separately for record and sleeve. Turntables are serviced and tested at every speed.</p></article>
-      <article class="ecard" data-reveal style="--d:160ms"><h3>Ship</h3><p>Rigid mailers, corner protectors and a fresh inner sleeve. Free delivery over €60, 30-day returns.</p></article>
-      <article class="ecard" data-reveal style="--d:240ms"><h3>Tap</h3><p>Every record ships in an Uncovered sleeve with an NFC tag: tap it with your phone to see the tracklist, credits and where to listen.</p></article>
-    </div>
-  </section>
-
-  <!-- Release alerts -->
-  <section class="section section--tight" aria-labelledby="alerts-title">
-    <div class="alerts" data-reveal>
-      <div>
-        <h2 class="h-display" id="alerts-title">Never miss <em>a release</em></h2>
-        <p>Get our weekly email every Friday morning: new arrivals, restocks and limited editions before they sell out.</p>
-      </div>
-      <form class="news-form" data-list="release-alerts" data-thanks="Done. See you on Friday morning." novalidate>
-        <label class="sr-only" for="alert-email">Your email</label>
-        <input id="alert-email" type="email" placeholder="Your email" autocomplete="email" required>
-        <button class="btn btn--brass" type="submit">Alert me</button>
-        <p class="news-form__msg" role="status"></p>
-      </form>
-    </div>
-  </section>
 </main>
 
 <div id="site-footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-<script src="assets/js/catalog.js?v=17" defer></script>
-<script src="assets/js/videos.js?v=17" defer></script>
-<script src="assets/js/data.js?v=17" defer></script>
-<script src="assets/js/art.js?v=17" defer></script>
-<script src="assets/js/main.js?v=17" defer></script>
-<script src="assets/js/listen.js?v=17" defer></script>
-<script src="assets/js/home.js?v=17" defer></script>
-<script src="assets/js/cardvideo.js?v=18" defer></script>
-<script src="assets/js/opening.js?v=17" defer></script>
+<script src="assets/js/catalog.js?v=19" defer></script>
+<script src="assets/js/videos.js?v=19" defer></script>
+<script src="assets/js/data.js?v=19" defer></script>
+<script src="assets/js/art.js?v=19" defer></script>
+<script src="assets/js/main.js?v=19" defer></script>
+<script src="assets/js/listen.js?v=19" defer></script>
+<script src="assets/js/home.js?v=19" defer></script>
+<script src="assets/js/cardvideo.js?v=19" defer></script>
+<script src="assets/js/opening.js?v=19" defer></script>
 </body>
 </html>
