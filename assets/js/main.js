@@ -118,7 +118,9 @@
   const homeLink = h => (onHome ? '' : 'index.html') + h;
   const shopLink = (h = '') => onShop ? (h || '#browse') : 'shop.html' + h;
   const catLink = k => onShop ? '#browse' : `shop.html?cat=${k}#browse`;
-  const NAV = [['Shop', shopLink()], ['Last releases', homeLink('#last')], ['Best-sellers', homeLink('#best')], ['Our story', shopLink('#story')]];
+  const NAV = [['Shop', shopLink()], ['Last releases', homeLink('#last')], ['Best-sellers', homeLink('#best')], ['Our story', shopLink('#story')],
+    ['Journal', 'le-vinyle-plus-qu-un-disque.html', 'article'], ['FAQ', 'faq.html', 'faq']];
+  const navLink = ([t, h, pg]) => `<a href="${h}"${pg && pg === PAGE ? ' aria-current="page"' : ''}>${t}</a>`;
   const CATS = Object.entries(D.categories);
 
   function catmenuHTML(home) {
@@ -137,7 +139,7 @@
     head.innerHTML = `
       <div class="site-head__bar">
         <a class="logo" href="${onHome ? '#top' : 'index.html'}" aria-label="Uncovered, home"><span class="logo__mark" aria-hidden="true"></span><b>UNCOVERED</b></a>
-        <nav class="site-head__nav" aria-label="Main">${NAV.map(([t, h]) => `<a href="${h}">${t}</a>`).join('')}</nav>
+        <nav class="site-head__nav" aria-label="Main">${NAV.map(navLink).join('')}</nav>
         <div class="site-head__tools">
           <a class="icon-btn" href="${onShop ? '#browse' : 'shop.html?focus=search#browse'}" data-focus-search aria-label="Search records">${ICON.search}</a>
           <button class="icon-btn" type="button" data-cart-open aria-label="Open cart">${ICON.bag}<span class="cart-count" data-cart-count>0</span></button>
@@ -158,7 +160,7 @@
     const menu = document.createElement('div');
     menu.className = 'menu'; menu.id = 'menu'; menu.hidden = true;
     menu.innerHTML = `<nav aria-label="Mobile">
-        <ul class="menu__main">${NAV.map(([t, h]) => `<li><a href="${h}">${t}</a></li>`).join('')}</ul>
+        <ul class="menu__main">${NAV.map(n => `<li>${navLink(n)}</li>`).join('')}</ul>
         <ul class="menu__cats">${CATS.map(([k, c]) => `<li><a href="${catLink(k)}" data-cat="${k}">${c.label}</a></li>`).join('')}</ul>
         <p class="menu__foot">Free delivery over ${money(FREE_SHIPPING)} · <a href="mailto:hello@uncovered.store">hello@uncovered.store</a></p>
       </nav>`;
