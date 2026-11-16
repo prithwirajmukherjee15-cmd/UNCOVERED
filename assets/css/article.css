@@ -1,0 +1,94 @@
+/* Uncovered: editorial article page, cream magazine layout */
+:root {
+  --paper: #FBF8F3;
+  --ink: #141414;
+  --ink-2: #3A3733;
+  --mute: #6E6860;
+  --line: #DCD4C8;
+  --sand: #F3EBE0;
+  --tag: #ECE2D4;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wrap: 1040px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--serif); }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 12px; background: var(--ink); color: #fff; padding: 8px 12px; z-index: 10; }
+
+/* ---------- Masthead ---------- */
+.mag-head { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
+.mag-head__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 26px 0 18px; }
+.mag-head__left, .mag-head__right { display: flex; align-items: center; gap: 14px; }
+.mag-head__right { justify-content: flex-end; }
+.mag-icon { display: inline-grid; place-items: center; width: 34px; height: 34px; color: var(--ink); }
+.mag-icon svg { width: 24px; height: 24px; }
+.mag-logo { text-align: center; text-decoration: none; display: grid; gap: 6px; }
+.mag-logo__name { font: 700 clamp(30px, 4.4vw, 46px)/1 var(--serif); letter-spacing: .02em; }
+.mag-logo__tag { font: 500 10.5px/1 var(--sans); letter-spacing: .32em; text-transform: uppercase; color: var(--ink-2); }
+.mag-pill { display: inline-flex; align-items: center; height: 34px; padding: 0 16px; border-radius: 999px; background: var(--ink); color: #fff; text-decoration: none; font: 500 13px/1 var(--sans); }
+.mag-pill:hover { background: #333; }
+.mag-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px clamp(22px, 5vw, 64px); padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 2px solid var(--line); }
+.mag-nav a { font: 500 12px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; text-decoration: none; color: var(--ink); padding: 4px 0; }
+.mag-nav a:hover, .mag-nav a[aria-current] { box-shadow: inset 0 -1px 0 var(--ink); }
+
+/* ---------- Article head ---------- */
+.mag { max-width: var(--wrap); margin: 0 auto; padding: 34px 20px 60px; }
+.mag-article__head { max-width: 820px; }
+.mag-tag { display: inline-block; margin: 0 0 18px; padding: 6px 10px; background: var(--tag); border-radius: 3px; font: 500 11px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.mag-article__head h1 { font: 600 clamp(34px, 5vw, 56px)/1.08 var(--serif); letter-spacing: -.01em; margin: 0 0 18px; }
+.mag-dek { font: 400 clamp(17px, 1.8vw, 20px)/1.5 var(--sans); color: var(--ink-2); margin: 0 0 22px; }
+.mag-byline { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0; padding-bottom: 22px; border-bottom: 1px solid var(--line); font: 400 13px/1 var(--sans); color: var(--ink-2); }
+.mag-byline b { font-weight: 600; color: var(--ink); }
+.mag-byline__logo { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: #fff; font: 700 16px/1 var(--serif); }
+.mag-byline__sep { color: var(--line); }
+
+/* ---------- Hero image ---------- */
+.mag-hero { margin: 26px 0 0; }
+.mag-hero img { width: 100%; height: clamp(220px, 34vw, 380px); object-fit: cover; }
+.mag-hero figcaption { margin-top: 8px; font: italic 400 12.5px/1.4 var(--sans); color: var(--ink-2); }
+.mag-hero figcaption span { color: var(--mute); }
+
+/* ---------- Body + sidebar ---------- */
+.mag-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 4vw, 48px); margin-top: 30px; align-items: start; }
+.mag-body { font-size: 18px; line-height: 1.7; color: var(--ink); }
+.mag-body p { margin: 0 0 18px; }
+.mag-lead::first-letter { float: left; font: 600 5.2em/.8 var(--serif); padding: 8px 12px 0 0; color: var(--ink); }
+.mag-body h2 { font: 600 clamp(24px, 2.6vw, 30px)/1.2 var(--serif); margin: 34px 0 12px; scroll-margin-top: 20px; }
+.mag-cta { margin-top: 30px !important; }
+.mag-btn { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 26px; border: 0; border-radius: 999px; background: var(--ink); color: #fff; text-decoration: none; font: 500 14px/1 var(--sans); cursor: pointer; }
+.mag-btn:hover { background: #333; }
+.mag-btn--sm { height: 40px; padding: 0 24px; justify-self: center; }
+
+.mag-aside { display: grid; gap: 16px; }
+.mag-box { background: var(--sand); padding: 20px; border-radius: 4px; }
+.mag-box__label { font: 600 12px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; margin: 0 0 16px; }
+.mag-card { display: grid; gap: 8px; text-decoration: none; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid var(--line); }
+.mag-card:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: 0; }
+.mag-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.mag-card__title { font: 600 17px/1.3 var(--serif); }
+.mag-card__more { font: 500 12px/1 var(--sans); color: var(--ink-2); }
+.mag-card:hover .mag-card__title { text-decoration: underline; text-underline-offset: 3px; }
+.mag-news { display: grid; gap: 10px; text-align: center; }
+.mag-news__title { font: 600 20px/1.2 var(--serif); margin: 0; }
+.mag-news p { margin: 0; font: 400 13px/1.5 var(--sans); color: var(--ink-2); }
+.mag-news input { width: 100%; height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 4px; background: #fff; font: 400 13px var(--sans); color: var(--ink); }
+.mag-news__msg { min-height: 1em; }
+
+/* ---------- Footer ---------- */
+.mag-foot { max-width: var(--wrap); margin: 0 auto; padding: 28px 20px 40px; border-top: 1px solid var(--line); font-family: var(--sans); }
+.mag-foot__name { font: 700 22px/1 var(--serif); margin: 0 0 10px; }
+.mag-foot__line { margin: 0 0 8px; font-size: 13.5px; color: var(--ink-2); line-height: 1.9; }
+.mag-foot__line a { text-underline-offset: 3px; }
+.mag-foot__credits { margin: 0; font-size: 12px; color: var(--mute); }
+
+@media (max-width: 820px) {
+  .mag-layout { grid-template-columns: minmax(0, 1fr); }
+  .mag-head__bar { grid-template-columns: auto 1fr auto; }
+  .mag-logo__tag { letter-spacing: .18em; font-size: 9px; }
+  .mag-pill { display: none; }
+  .mag-body { font-size: 17px; }
+}
