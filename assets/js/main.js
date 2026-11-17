@@ -119,7 +119,7 @@
   const shopLink = (h = '') => onShop ? (h || '#browse') : 'shop.html' + h;
   const catLink = k => onShop ? '#browse' : `shop.html?cat=${k}#browse`;
   const NAV = [['Shop', shopLink()], ['Last releases', homeLink('#last')], ['Best-sellers', homeLink('#best')], ['Our story', shopLink('#story')],
-    ['Journal', 'le-vinyle-plus-qu-un-disque.html', 'article'], ['FAQ', 'faq.html', 'faq']];
+    ['Journal', 'vinyl-more-than-a-record.html', 'article'], ['FAQ', 'faq.html', 'faq']];
   const navLink = ([t, h, pg]) => `<a href="${h}"${pg && pg === PAGE ? ' aria-current="page"' : ''}>${t}</a>`;
   const CATS = Object.entries(D.categories);
 

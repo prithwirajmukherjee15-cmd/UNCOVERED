@@ -2,3 +2,9 @@
 [build]
   publish = "."
   command = ""
+
+# The article moved to an English URL; keep the old link working.
+[[redirects]]
+  from = "/le-vinyle-plus-qu-un-disque.html"
+  to = "/vinyl-more-than-a-record.html"
+  status = 301
