@@ -899,9 +899,10 @@ ul, ol { margin: 0; padding: 0; }
 @media (hover: none) { .pcard[data-video] .pcard__play { opacity: .9; } .pcard.is-playing .pcard__play { opacity: 0; } .pcard[data-video] .pcard__sound { opacity: 1; transform: none; } }
 
 /* Sale price sits above the price so the button never drops a line */
-.pcard__row { flex-wrap: nowrap; align-items: flex-end; }
-.pcard__row .price { display: inline-flex; flex-direction: column; line-height: 1.15; }
-.pcard__row .price s { font-size: .78em; margin: 0 0 2px; }
+.pcard__row { flex-wrap: nowrap; align-items: center; margin-top: 22px; }
+/* Current price sits level with the button; a crossed-out old price floats just above it. */
+.pcard__row .price { position: relative; display: inline-block; line-height: 1; white-space: nowrap; }
+.pcard__row .price s { position: absolute; left: 0; bottom: calc(100% + 4px); font-size: .78em; margin: 0; line-height: 1; }
 @media (prefers-reduced-motion: reduce) { .pcard__sleeve .glow, .pcard__sleeve .glow::after { animation: none; } }
 
 /* ---------- Two pages: shop and legal ---------- */
@@ -970,3 +971,4 @@ ul, ol { margin: 0; padding: 0; }
 .faq__more h2 { font: 400 clamp(28px, 3vw, 40px)/1.1 var(--serif); margin: 0 0 10px; }
 .faq__more p { color: var(--text-2); margin: 0 0 20px; }
 
+@media (max-width: 640px) { .pcard__row { flex-direction: column; align-items: flex-start; } }
